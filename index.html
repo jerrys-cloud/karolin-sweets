@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="festive">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>حلويات كارولين | كيك وحلويات لكل مناسبة</title>
+  <meta name="description" content="حلويات كارولين — كيك وحلويات فاخرة تُصمَّم حسب الطلب لكل مناسبة: أعياد الميلاد، الأفراح، المعمودية، المواليد وحفلات الأطفال.">
+  <meta name="theme-color" content="#1b1310">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ================= شريط تهاني الأعياد ================= -->
+  <div class="festive-bar" role="region" aria-label="تهاني الأعياد">
+    <div class="festive-bar__track">
+      <ul class="festive-bar__group">
+        <li><strong>ميلادٌ مجيد</strong></li>
+        <li>كل عام وأنتم بخير</li>
+        <li><strong>سنة جديدة سعيدة ٢٠٢٧</strong></li>
+        <li>عسى أيامكم كلها حلاوة وفرح</li>
+        <li>تشكيلة الأعياد متوفرة الآن — <a href="#contact">اطلبوا مسبقًا</a></li>
+        <li>ورشات تزيين كوكيز العيد للأطفال</li>
+      </ul>
+      <ul class="festive-bar__group" aria-hidden="true">
+        <li><strong>ميلادٌ مجيد</strong></li>
+        <li>كل عام وأنتم بخير</li>
+        <li><strong>سنة جديدة سعيدة ٢٠٢٧</strong></li>
+        <li>عسى أيامكم كلها حلاوة وفرح</li>
+        <li>تشكيلة الأعياد متوفرة الآن — <a href="#contact" tabindex="-1">اطلبوا مسبقًا</a></li>
+        <li>ورشات تزيين كوكيز العيد للأطفال</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ثلج ذهبي متساقط -->
+  <canvas class="snow" aria-hidden="true"></canvas>
+
+  <!-- ================= شريط التنقل ================= -->
+  <header class="site-header" id="top">
+    <div class="container nav">
+      <a href="#top" class="brand" aria-label="حلويات كارولين — الصفحة الرئيسية">
+        <span class="brand__mark" aria-hidden="true">ك</span>
+        <span class="brand__text">
+          <span class="brand__name">كارولين</span>
+          <span class="brand__tag">للحلويات الفاخرة</span>
+        </span>
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav__toggle" aria-hidden="true">
+      <label for="nav-toggle" class="nav__burger" aria-label="فتح القائمة">
+        <span></span><span></span><span></span>
+      </label>
+
+      <nav class="nav__menu" aria-label="القائمة الرئيسية">
+        <ul class="nav__links">
+          <li><a href="#top" class="is-active">الرئيسية</a></li>
+          <li><a href="#collection">تشكيلتنا</a></li>
+          <li><a href="#gallery">معرض الصور</a></li>
+          <li><a href="#story">قصتنا</a></li>
+          <li><a href="#workshops">ورشات الأطفال</a></li>
+          <li><a href="#contact">تواصل معنا</a></li>
+        </ul>
+        <a href="#contact" class="btn btn--gold btn--sm">اطلب الآن</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ================= القسم الرئيسي (Hero) ================= -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__media" aria-hidden="true">
+        <!-- صورة الواجهة الرئيسية -->
+        <img src="images/hospitality-cups.jpg" alt="" onerror="this.remove()">
+      </div>
+      <div class="hero__veil" aria-hidden="true"></div>
+
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <p class="eyebrow"><span class="eyebrow__line"></span>كيك لكل مناسبة · يُصمَّم خصيصًا لكم</p>
+          <h1 id="hero-title" class="hero__title">
+            حلاوةٌ تليق
+            <span class="hero__title-accent">بلحظاتكم الثمينة</span>
+          </h1>
+          <p class="hero__lead">
+            من عيد الميلاد الأول إلى ليلة العمر، نصمّم في كارولين كيكًا وحلويات تحكي قصة مناسبتكم؛
+            بألوانها وثيمتها وتفاصيلها، مصنوعة يدويًا بأجود المكونات.
+          </p>
+          <div class="hero__actions">
+            <a href="#collection" class="btn btn--gold">اكتشف التشكيلة</a>
+            <a href="#gallery" class="btn btn--ghost">شاهد المعرض</a>
+          </div>
+
+          <ul class="hero__stats">
+            <li><strong>يدويًا</strong><span>بكل تفاصيله</span></li>
+            <li><strong>حسب الطلب</strong><span>تصميم خاص لكل مناسبة</span></li>
+            <li><strong>طازج</strong><span>يُحضَّر ليوم مناسبتكم</span></li>
+          </ul>
+        </div>
+
+        <aside class="hero__card" aria-label="صنف الموسم">
+          <span class="hero__card-badge">صنف الموسم</span>
+          <h2 class="hero__card-title">كاسات الشوكولاتة بالفستق</h2>
+          <p>طبقات من الكريمة الناعمة، شوكولاتة لامعة، فستق حلبي مطحون، وبرعم ورد جوري.</p>
+          <a href="#collection" class="link-arrow">اعرف المزيد <span aria-hidden="true">←</span></a>
+        </aside>
+      </div>
+
+      <a href="#collection" class="hero__scroll" aria-label="انتقل للأسفل"><span></span></a>
+    </section>
+
+    <!-- ================= شريط القيم ================= -->
+    <section class="ribbon" aria-label="ما يميزنا">
+      <div class="container ribbon__inner">
+        <div class="ribbon__item"><span class="ribbon__icon" aria-hidden="true">✦</span>أعياد الميلاد</div>
+        <div class="ribbon__item"><span class="ribbon__icon" aria-hidden="true">✦</span>الأفراح والخطوبة</div>
+        <div class="ribbon__item"><span class="ribbon__icon" aria-hidden="true">✦</span>المعمودية والمناولة</div>
+        <div class="ribbon__item"><span class="ribbon__icon" aria-hidden="true">✦</span>المواليد وحفلات الأطفال</div>
+      </div>
+    </section>
+
+    <!-- ================= التشكيلة ================= -->
+    <section class="section collection" id="collection" aria-labelledby="collection-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow eyebrow--center"><span class="eyebrow__line"></span>تشكيلتنا<span class="eyebrow__line"></span></p>
+          <h2 id="collection-title" class="section-title">روائع من مطبخ كارولين</h2>
+          <p class="section-lead">كيك، كيك بوبس، كاسات حلى وضيافة كاملة — كل قطعة تُصمَّم لتناسب ثيمة مناسبتكم.</p>
+        </header>
+
+        <div class="cards">
+          <article class="card">
+            <figure class="card__media media">
+              <img src="images/hospitality-dessert-cups.jpg" alt="كاسات حلى متنوعة على طاولة ضيافة" loading="lazy" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </figure>
+            <div class="card__body">
+              <span class="card__kicker">كاسات الحلى</span>
+              <h3 class="card__title">كاسات الحلى للضيافة</h3>
+              <p>تشكيلة كاسات بالكريمة والشوكولاتة والفواكه والفستق، تُنسَّق لطاولة مناسبتكم.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <figure class="card__media media">
+              <img src="images/kids-cakesicles.jpg" alt="كيك على عصا بتصاميم للأطفال" loading="lazy" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </figure>
+            <div class="card__body">
+              <span class="card__kicker">حفلات الأطفال</span>
+              <h3 class="card__title">كيك على عصا</h3>
+              <p>مغلّفة بالشوكولاتة ومزيّنة بثيمة حفلتكم والأسماء حسب الطلب.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <figure class="card__media media">
+              <img src="images/hospitality-maamoul.jpg" alt="معمول مرشوش بالسكر الناعم" loading="lazy" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </figure>
+            <div class="card__body">
+              <span class="card__kicker">مخبوزات</span>
+              <h3 class="card__title">معمول التمر والجوز</h3>
+              <p>سميد ناعم بالسمن البلدي وحشوات غنية بنكهة البيت.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <figure class="card__media media">
+              <img src="images/birthday-pink-bows.jpg" alt="كيكة عيد ميلاد وردية بشرائط سوداء" loading="lazy" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </figure>
+            <div class="card__body">
+              <span class="card__kicker">مناسبات</span>
+              <h3 class="card__title">كيك المناسبات</h3>
+              <p>كيك بالكريمة بتصاميم حسب الطلب لأعياد الميلاد والحفلات.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= معرض الصور ================= -->
+    <section class="section gallery-section" id="gallery" aria-labelledby="gallery-title">
+      <div class="container">
+        <header class="section-head section-head--split">
+          <div>
+            <p class="eyebrow"><span class="eyebrow__line"></span>معرض الصور</p>
+            <h2 id="gallery-title" class="section-title">لمحاتٌ من عالمنا الحلو</h2>
+          </div>
+          <p class="section-lead">كل صورة مناسبةٌ حقيقية صمّمناها لعملائنا؛ ولمناسبتكم تصميمها الخاص أيضًا.</p>
+        </header>
+
+        <div class="gallery">
+          <figure class="gallery__item gallery__item--feature media">
+            <img src="images/birthday-macarons.jpg" alt="كيكة عيد ميلاد بالماكرون الوردي والأزرق" loading="lazy" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            <figcaption>كيك أعياد الميلاد</figcaption>
+          </figure>
+          <figure class="gallery__item gallery__item--tall media">
+            <img src="images/hospitality-dessert-table.jpg" alt="طاولة ضيافة حلويات في قاعة أفراح" loading="lazy" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            <figcaption>طاولات الضيافة</figcaption>
+          </figure>
+          <figure class="gallery__item gallery__item--tall media">
+            <img src="images/birthday-unicorn.jpg" alt="كيكة اليونيكورن بألوان الباستيل" loading="lazy" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            <figcaption>كيكة اليونيكورن</figcaption>
+          </figure>
+          <figure class="gallery__item gallery__item--wide media">
+            <img src="images/hospitality-petit-fours.jpg" alt="صواني حلويات صغيرة متنوعة" loading="lazy" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            <figcaption>حلويات الضيافة</figcaption>
+          </figure>
+          <figure class="gallery__item media">
+            <img src="images/wedding-bride-veil.jpg" alt="كيكة العروس بالطرحة" loading="lazy" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            <figcaption>كيك العروس</figcaption>
+          </figure>
+          <figure class="gallery__item media">
+            <img src="images/baptism-cakepops.jpg" alt="كيك بوبس أبيض بزينة ذهبية للمعمودية" loading="lazy" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            <figcaption>كيك بوبس للمعمودية</figcaption>
+          </figure>
+        </div>
+
+        <div class="gallery__more">
+          <a href="gallery.html" class="btn btn--dark">شاهد جميع الصور <span aria-hidden="true">←</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= قصتنا ================= -->
+    <section class="section story" id="story" aria-labelledby="story-title">
+      <div class="container story__inner">
+        <figure class="story__media media">
+          <img src="images/story.jpg" alt="كارولين، صاحبة حلويات كارولين" style="object-position: 50% 35%" loading="lazy" onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src='images/birthday-teddy-first.jpg'}else{this.parentElement.classList.add('is-empty');this.remove()}">
+        </figure>
+        <div class="story__content">
+          <p class="eyebrow"><span class="eyebrow__line"></span>قصتنا</p>
+          <h2 id="story-title" class="section-title">وصفةٌ سرّها الحب والإتقان</h2>
+          <p>
+            بدأت كارولين من شغفٍ بسيط: أن تكون الحلوى جزءًا من فرحة الناس. نستمع إلى فكرتكم،
+            نختار معكم الألوان والثيمة، ثم نصنع كل قطعة يدويًا بعناية، لتصل إلى طاولة مناسبتكم
+            جميلةً كما تخيلتموها، ولذيذةً كما تستحقون.
+          </p>
+          <blockquote class="story__quote">«الحلوى الجيدة لا تُؤكل فقط… بل تُتذكَّر.»</blockquote>
+          <a href="#contact" class="btn btn--dark">احجز طلب مناسبتك</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ورشات الأطفال ================= -->
+    <section class="section workshop" id="workshops" aria-labelledby="workshop-title">
+      <div class="container story__inner">
+        <div class="story__content">
+          <p class="eyebrow"><span class="eyebrow__line"></span>للصغار</p>
+          <h2 id="workshop-title" class="section-title">ورشات تزيين الكوكيز</h2>
+          <p>
+            نستقبل الأطفال في محلّنا لورشات تزيين ممتعة، خصوصًا في الأعياد والعطل: كوكيز طازجة بأشكال
+            مرحة، كريمات ملوّنة، وحلويات للتزيين — ليصنع كل طفل قطعته الخاصة ويأخذها معه إلى البيت.
+          </p>
+          <ul class="workshop__list">
+            <li><strong>ورشات في المحل</strong><span>مواعيد خاصة في الأعياد والمناسبات</span></li>
+            <li><strong>علبة التزيين المنزلية</strong><span>كل ما يلزم لورشة صغيرة في البيت أو في حفلة</span></li>
+          </ul>
+          <a href="https://wa.me/972527958983?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%20%D9%83%D8%A7%D8%B1%D9%88%D9%84%D9%8A%D9%86%D8%8C%20%D8%A3%D9%88%D8%AF%D9%91%20%D8%AD%D8%AC%D8%B2%20%D9%85%D9%83%D8%A7%D9%86%20%D9%81%D9%8A%20%D9%88%D8%B1%D8%B4%D8%A9%20%D8%AA%D8%B2%D9%8A%D9%8A%D9%86%20%D8%A7%D9%84%D9%83%D9%88%D9%83%D9%8A%D8%B2%20%D9%84%D9%84%D8%A3%D8%B7%D9%81%D8%A7%D9%84" class="btn btn--dark" target="_blank" rel="noopener">احجزوا مكانًا في الورشة</a>
+        </div>
+        <figure class="story__media media">
+          <img src="images/kids-cookie-kit-2.jpg" alt="علبة تزيين كوكيز للأطفال مع كريمات ملونة وحلويات" loading="lazy" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+        </figure>
+      </div>
+    </section>
+
+    <!-- ================= دعوة للطلب ================= -->
+    <section class="cta" id="contact" aria-labelledby="cta-title">
+      <div class="container cta__inner">
+        <h2 id="cta-title" class="cta__title">اجعلوا مناسبتكم القادمة أحلى</h2>
+        <p>أخبرونا عن مناسبتكم وموعدها وفكرتكم، وسنصمم لكم كيكًا وضيافة تليق بها.</p>
+        <div class="cta__actions">
+          <a href="https://wa.me/972527958983?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%20%D9%83%D8%A7%D8%B1%D9%88%D9%84%D9%8A%D9%86%D8%8C%20%D8%A3%D9%88%D8%AF%D9%91%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%B7%D9%84%D8%A8%20%D9%84%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9" class="btn btn--gold" target="_blank" rel="noopener">تواصل عبر واتساب</a>
+          <a href="tel:+972527958983" class="btn btn--ghost">اتصل بنا</a>
+          <a href="https://www.instagram.com/karolinsweets/" class="btn btn--ghost" target="_blank" rel="noopener">تابعونا على إنستغرام</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= التذييل ================= -->
+  <footer class="site-footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a href="#top" class="brand">
+          <span class="brand__mark" aria-hidden="true">ك</span>
+          <span class="brand__text">
+            <span class="brand__name">كارولين</span>
+            <span class="brand__tag">للحلويات الفاخرة</span>
+          </span>
+        </a>
+        <p>كيك وحلويات تُصمَّم حسب الطلب لكل مناسبة، لتكون جزءًا من أجمل ذكرياتكم.</p>
+      </div>
+      <div>
+        <h3 class="footer__title">روابط</h3>
+        <ul class="footer__list">
+          <li><a href="#collection">تشكيلتنا</a></li>
+          <li><a href="#gallery">معرض الصور</a></li>
+          <li><a href="#story">قصتنا</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer__title">أوقات العمل</h3>
+        <ul class="footer__list">
+          <li>حسب الطلب</li>
+          <li>يُرجى الحجز مسبقًا عبر الهاتف أو واتساب</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer__title">تواصل</h3>
+        <ul class="footer__list">
+          <li>العنوان: قرية عيلبون</li>
+          <li>هاتف: <a href="tel:+972527958983" dir="ltr">052-795-8983</a></li>
+          <li><a href="https://wa.me/972527958983?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%20%D9%83%D8%A7%D8%B1%D9%88%D9%84%D9%8A%D9%86%D8%8C%20%D8%A3%D9%88%D8%AF%D9%91%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%B7%D9%84%D8%A8%20%D9%84%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9" target="_blank" rel="noopener">واتساب</a></li>
+          <li>إنستغرام: <a href="https://www.instagram.com/karolinsweets/" target="_blank" rel="noopener" dir="ltr">@karolinsweets</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <p>© ٢٠٢٦ حلويات كارولين. جميع الحقوق محفوظة.</p>
+    </div>
+  </footer>
+
+  <script>
+    // تغيير مظهر شريط التنقل عند التمرير + إغلاق القائمة عند اختيار رابط
+    (function () {
+      var header = document.querySelector('.site-header');
+      var toggle = document.getElementById('nav-toggle');
+      function onScroll() { header.classList.toggle('is-scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+      document.querySelectorAll('.nav__menu a').forEach(function (a) {
+        a.addEventListener('click', function () { toggle.checked = false; });
+      });
+    })();
+  </script>
+  <!-- ================= نافذة تشكيلة الأعياد ================= -->
+  <dialog class="promo" id="season-promo" aria-labelledby="promo-title">
+    <button type="button" class="promo__close" data-promo-close aria-label="إغلاق">×</button>
+    <div class="promo__grid">
+      <figure class="promo__media media">
+        <img src="images/birthday-snowman.jpg" alt="كيكة شتوية بزينة رجل الثلج" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+      </figure>
+      <div class="promo__body">
+        <p class="promo__eyebrow">✦ موسم الأعياد · لفترة محدودة</p>
+        <h2 class="promo__title" id="promo-title">تشكيلة الأعياد الخاصة</h2>
+        <p class="promo__text">احتفلوا بالميلاد ورأس السنة بحلويات تُصمَّم خصيصًا لسهراتكم ولقاءات العائلة.</p>
+        <ul class="promo__list">
+          <li>كيك الأعياد بتصاميم شتوية</li>
+          <li>علب هدايا حلويات فاخرة</li>
+          <li>طاولات ضيافة لسهرة رأس السنة</li>
+          <li>ورشات تزيين كوكيز العيد للأطفال</li>
+        </ul>
+        <div class="promo__actions">
+          <a href="#contact" class="btn btn--gold" data-promo-order>اطلب الآن</a>
+          <button type="button" class="promo__later" data-promo-close>ربما لاحقًا</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="festive.js" defer></script>
+</body>
+</html>

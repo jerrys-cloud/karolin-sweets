@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>معرض الصور | حلويات كارولين</title>
+  <meta name="description" content="حلويات كارولين — كيك وحلويات فاخرة تُصمَّم حسب الطلب لكل مناسبة: أعياد الميلاد، الأفراح، المعمودية، المواليد وحفلات الأطفال.">
+  <meta name="theme-color" content="#1b1310">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-gallery">
+
+  <!-- ================= شريط التنقل ================= -->
+  <header class="site-header" id="top">
+    <div class="container nav">
+      <a href="index.html#top" class="brand" aria-label="حلويات كارولين — الصفحة الرئيسية">
+        <span class="brand__mark" aria-hidden="true">ك</span>
+        <span class="brand__text">
+          <span class="brand__name">كارولين</span>
+          <span class="brand__tag">للحلويات الفاخرة</span>
+        </span>
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav__toggle" aria-hidden="true">
+      <label for="nav-toggle" class="nav__burger" aria-label="فتح القائمة">
+        <span></span><span></span><span></span>
+      </label>
+
+      <nav class="nav__menu" aria-label="القائمة الرئيسية">
+        <ul class="nav__links">
+          <li><a href="index.html#top">الرئيسية</a></li>
+          <li><a href="index.html#collection">تشكيلتنا</a></li>
+          <li><a href="gallery.html" class="is-active" aria-current="page">معرض الصور</a></li>
+          <li><a href="index.html#story">قصتنا</a></li>
+          <li><a href="index.html#workshops">ورشات الأطفال</a></li>
+          <li><a href="index.html#contact">تواصل معنا</a></li>
+        </ul>
+        <a href="index.html#contact" class="btn btn--gold btn--sm">اطلب الآن</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-head" aria-labelledby="page-title">
+      <div class="container page-head__inner">
+        <p class="eyebrow eyebrow--center"><span class="eyebrow__line"></span>معرض الصور<span class="eyebrow__line"></span></p>
+        <h1 id="page-title" class="page-head__title">من أعمالنا</h1>
+        <p class="page-head__lead">صورٌ حقيقية لكيك وحلويات صمّمناها لمناسبات عملائنا. اختاروا نوع المناسبة، واضغطوا على أي صورة لتكبيرها.</p>
+      </div>
+    </section>
+
+    <section class="section album-section">
+      <div class="container">
+        <div class="filters" role="toolbar" aria-label="تصفية حسب المناسبة">
+          <button type="button" class="filter is-active" data-filter="all" aria-pressed="true">الكل <span>20</span></button>
+          <button type="button" class="filter" data-filter="birthday" aria-pressed="false">أعياد الميلاد <span>8</span></button>
+          <button type="button" class="filter" data-filter="wedding" aria-pressed="false">الأفراح والخطوبة <span>2</span></button>
+          <button type="button" class="filter" data-filter="baptism" aria-pressed="false">المعمودية والمناولة <span>1</span></button>
+          <button type="button" class="filter" data-filter="kids" aria-pressed="false">الأطفال والورشات <span>4</span></button>
+          <button type="button" class="filter" data-filter="hospitality" aria-pressed="false">الضيافة <span>5</span></button>
+        </div>
+
+        <ul class="album" id="album">
+          <li class="album__item" data-cat="hospitality">
+            <button type="button" class="album__btn media" aria-label="تكبير: طاولة ضيافة في قاعة أفراح">
+              <img src="images/hospitality-dessert-table.jpg" alt="طاولة ضيافة في قاعة أفراح" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>الضيافة</span>طاولة ضيافة في قاعة أفراح</p>
+          </li>
+          <li class="album__item" data-cat="birthday">
+            <button type="button" class="album__btn media" aria-label="تكبير: كيكة وردية بشرائط سوداء">
+              <img src="images/birthday-pink-bows.jpg" alt="كيكة وردية بشرائط سوداء" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>أعياد الميلاد</span>كيكة وردية بشرائط سوداء</p>
+          </li>
+          <li class="album__item" data-cat="wedding">
+            <button type="button" class="album__btn media" aria-label="تكبير: كيكة العروس بالطرحة">
+              <img src="images/wedding-bride-veil.jpg" alt="كيكة العروس بالطرحة" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>الأفراح والخطوبة</span>كيكة العروس بالطرحة</p>
+          </li>
+          <li class="album__item" data-cat="birthday">
+            <button type="button" class="album__btn media" aria-label="تكبير: كيكة اليونيكورن">
+              <img src="images/birthday-unicorn.jpg" alt="كيكة اليونيكورن" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>أعياد الميلاد</span>كيكة اليونيكورن</p>
+          </li>
+          <li class="album__item" data-cat="baptism">
+            <button type="button" class="album__btn media" aria-label="تكبير: كيك بوبس للمعمودية">
+              <img src="images/baptism-cakepops.jpg" alt="كيك بوبس للمعمودية" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>المعمودية والمناولة</span>كيك بوبس للمعمودية</p>
+          </li>
+          <li class="album__item" data-cat="hospitality">
+            <button type="button" class="album__btn media" aria-label="تكبير: صواني حلويات صغيرة">
+              <img src="images/hospitality-petit-fours.jpg" alt="صواني حلويات صغيرة" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>الضيافة</span>صواني حلويات صغيرة</p>
+          </li>
+          <li class="album__item" data-cat="birthday">
+            <button type="button" class="album__btn media" aria-label="تكبير: كيكة كحلية بحروف ذهبية">
+              <img src="images/birthday-navy.jpg" alt="كيكة كحلية بحروف ذهبية" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>أعياد الميلاد</span>كيكة كحلية بحروف ذهبية</p>
+          </li>
+          <li class="album__item" data-cat="kids">
+            <button type="button" class="album__btn media" aria-label="تكبير: كيك بوبس الغزال">
+              <img src="images/kids-cakepops-deer.jpg" alt="كيك بوبس الغزال" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>الأطفال والورشات</span>كيك بوبس الغزال</p>
+          </li>
+          <li class="album__item" data-cat="birthday">
+            <button type="button" class="album__btn media" aria-label="تكبير: كيكة الماكرون">
+              <img src="images/birthday-macarons.jpg" alt="كيكة الماكرون" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>أعياد الميلاد</span>كيكة الماكرون</p>
+          </li>
+          <li class="album__item" data-cat="wedding">
+            <button type="button" class="album__btn media" aria-label="تكبير: كيكة فستان العروس">
+              <img src="images/wedding-bride-dress.jpg" alt="كيكة فستان العروس" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>الأفراح والخطوبة</span>كيكة فستان العروس</p>
+          </li>
+          <li class="album__item" data-cat="hospitality">
+            <button type="button" class="album__btn media" aria-label="تكبير: كاسات الفستق والورد">
+              <img src="images/hospitality-cups.jpg" alt="كاسات الفستق والورد" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>الضيافة</span>كاسات الفستق والورد</p>
+          </li>
+          <li class="album__item" data-cat="birthday">
+            <button type="button" class="album__btn media" aria-label="تكبير: كيكة عيد الميلاد الأول">
+              <img src="images/birthday-teddy-first.jpg" alt="كيكة عيد الميلاد الأول" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>أعياد الميلاد</span>كيكة عيد الميلاد الأول</p>
+          </li>
+          <li class="album__item" data-cat="kids">
+            <button type="button" class="album__btn media" aria-label="تكبير: كيك على عصا – ويني الدبدوب">
+              <img src="images/kids-cakesicles.jpg" alt="كيك على عصا – ويني الدبدوب" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>الأطفال والورشات</span>كيك على عصا – ويني الدبدوب</p>
+          </li>
+          <li class="album__item" data-cat="birthday">
+            <button type="button" class="album__btn media" aria-label="تكبير: كيكة جوز الهند بالفراولة">
+              <img src="images/birthday-strawberry.jpg" alt="كيكة جوز الهند بالفراولة" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>أعياد الميلاد</span>كيكة جوز الهند بالفراولة</p>
+          </li>
+          <li class="album__item" data-cat="hospitality">
+            <button type="button" class="album__btn media" aria-label="تكبير: كاسات حلى متنوعة">
+              <img src="images/hospitality-dessert-cups.jpg" alt="كاسات حلى متنوعة" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>الضيافة</span>كاسات حلى متنوعة</p>
+          </li>
+          <li class="album__item" data-cat="birthday">
+            <button type="button" class="album__btn media" aria-label="تكبير: كيكة رجل الثلج">
+              <img src="images/birthday-snowman.jpg" alt="كيكة رجل الثلج" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>أعياد الميلاد</span>كيكة رجل الثلج</p>
+          </li>
+          <li class="album__item" data-cat="kids">
+            <button type="button" class="album__btn media" aria-label="تكبير: علب تزيين الكوكيز">
+              <img src="images/kids-cookie-kit.jpg" alt="علب تزيين الكوكيز" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>الأطفال والورشات</span>علب تزيين الكوكيز</p>
+          </li>
+          <li class="album__item" data-cat="birthday">
+            <button type="button" class="album__btn media" aria-label="تكبير: كيكة سبايدرمان">
+              <img src="images/birthday-spiderman.jpg" alt="كيكة سبايدرمان" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>أعياد الميلاد</span>كيكة سبايدرمان</p>
+          </li>
+          <li class="album__item" data-cat="hospitality">
+            <button type="button" class="album__btn media" aria-label="تكبير: معمول بيتي">
+              <img src="images/hospitality-maamoul.jpg" alt="معمول بيتي" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>الضيافة</span>معمول بيتي</p>
+          </li>
+          <li class="album__item" data-cat="kids">
+            <button type="button" class="album__btn media" aria-label="تكبير: علبة تزيين الكوكيز المنزلية">
+              <img src="images/kids-cookie-kit-2.jpg" alt="علبة تزيين الكوكيز المنزلية" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>الأطفال والورشات</span>علبة تزيين الكوكيز المنزلية</p>
+          </li>
+        </ul>
+
+        <div class="album__cta">
+          <p>أعجبكم تصميم؟ نصمّم لكم ما يشبهه — أو فكرة جديدة كليًا.</p>
+          <a href="index.html#contact" class="btn btn--gold">اطلبوا كيكة مناسبتكم</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= عارض الصور ================= -->
+  <dialog class="lightbox" id="lightbox" aria-label="عارض الصور">
+    <button type="button" class="lightbox__close" data-lb="close" aria-label="إغلاق">✕</button>
+    <button type="button" class="lightbox__nav lightbox__nav--prev" data-lb="prev" aria-label="الصورة السابقة">›</button>
+    <figure class="lightbox__figure">
+      <img id="lb-img" src="" alt="">
+      <figcaption id="lb-cap"></figcaption>
+    </figure>
+    <button type="button" class="lightbox__nav lightbox__nav--next" data-lb="next" aria-label="الصورة التالية">‹</button>
+  </dialog>
+
+  <!-- ================= التذييل ================= -->
+  <footer class="site-footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a href="index.html#top" class="brand">
+          <span class="brand__mark" aria-hidden="true">ك</span>
+          <span class="brand__text">
+            <span class="brand__name">كارولين</span>
+            <span class="brand__tag">للحلويات الفاخرة</span>
+          </span>
+        </a>
+        <p>كيك وحلويات تُصمَّم حسب الطلب لكل مناسبة، لتكون جزءًا من أجمل ذكرياتكم.</p>
+      </div>
+      <div>
+        <h3 class="footer__title">روابط</h3>
+        <ul class="footer__list">
+          <li><a href="index.html#collection">تشكيلتنا</a></li>
+          <li><a href="gallery.html">معرض الصور</a></li>
+          <li><a href="index.html#story">قصتنا</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer__title">أوقات العمل</h3>
+        <ul class="footer__list">
+          <li>حسب الطلب</li>
+          <li>يُرجى الحجز مسبقًا عبر الهاتف أو واتساب</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer__title">تواصل</h3>
+        <ul class="footer__list">
+          <li>العنوان: قرية عيلبون</li>
+          <li>هاتف: <a href="tel:+972527958983" dir="ltr">052-795-8983</a></li>
+          <li><a href="https://wa.me/972527958983?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%20%D9%83%D8%A7%D8%B1%D9%88%D9%84%D9%8A%D9%86%D8%8C%20%D8%A3%D9%88%D8%AF%D9%91%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%B7%D9%84%D8%A8%20%D9%84%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9" target="_blank" rel="noopener">واتساب</a></li>
+          <li>إنستغرام: <a href="https://www.instagram.com/karolinsweets/" target="_blank" rel="noopener" dir="ltr">@karolinsweets</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <p>© ٢٠٢٦ حلويات كارولين. جميع الحقوق محفوظة.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      // شريط التنقل
+      var header = document.querySelector('.site-header');
+      var toggle = document.getElementById('nav-toggle');
+      function onScroll() { header.classList.toggle('is-scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+      document.querySelectorAll('.nav__menu a').forEach(function (a) {
+        a.addEventListener('click', function () { toggle.checked = false; });
+      });
+
+      // التصفية حسب المناسبة
+      var items = Array.prototype.slice.call(document.querySelectorAll('.album__item'));
+      var buttons = document.querySelectorAll('.filter');
+      function applyFilter(cat) {
+        if (!document.querySelector('.filter[data-filter="' + cat + '"]')) cat = 'all';
+        buttons.forEach(function (b) {
+          var on = b.dataset.filter === cat;
+          b.classList.toggle('is-active', on);
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        items.forEach(function (it) { it.hidden = !(cat === 'all' || it.dataset.cat === cat); });
+      }
+      buttons.forEach(function (b) {
+        b.addEventListener('click', function () {
+          applyFilter(b.dataset.filter);
+          history.replaceState(null, '', b.dataset.filter === 'all' ? location.pathname : '#' + b.dataset.filter);
+        });
+      });
+      applyFilter(location.hash.slice(1) || 'all');
+
+      // عارض الصور
+      var lb = document.getElementById('lightbox');
+      var lbImg = document.getElementById('lb-img');
+      var lbCap = document.getElementById('lb-cap');
+      var current = 0;
+      function visible() { return items.filter(function (it) { return !it.hidden; }); }
+      function show(i) {
+        var list = visible();
+        current = (i + list.length) % list.length;
+        var img = list[current].querySelector('img');
+        lbImg.src = img.src; lbImg.alt = img.alt;
+        lbCap.textContent = img.alt;
+      }
+      items.forEach(function (it) {
+        it.querySelector('.album__btn').addEventListener('click', function () {
+          show(visible().indexOf(it));
+          lb.showModal();
+        });
+      });
+      lb.addEventListener('click', function (e) {
+        var act = e.target.closest('[data-lb]');
+        if (act) {
+          if (act.dataset.lb === 'close') lb.close();
+          if (act.dataset.lb === 'next') show(current + 1);
+          if (act.dataset.lb === 'prev') show(current - 1);
+        } else if (e.target === lb) { lb.close(); }
+      });
+      document.addEventListener('keydown', function (e) {
+        if (!lb.open) return;
+        if (e.key === 'ArrowLeft') show(current + 1);   // في الاتجاه من اليمين لليسار: اليسار = التالي
+        if (e.key === 'ArrowRight') show(current - 1);
+      });
+      // السحب على الهاتف
+      var x0 = null;
+      lb.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+      lb.addEventListener('touchend', function (e) {
+        if (x0 === null) return;
+        var dx = e.changedTouches[0].clientX - x0;
+        if (Math.abs(dx) > 50) show(current + (dx > 0 ? 1 : -1));
+        x0 = null;
+      });
+    })();
+  </script>
+</body>
+</html>
