@@ -56,7 +56,8 @@
     <section class="section album-section">
       <div class="container">
         <div class="filters" role="toolbar" aria-label="تصفية حسب المناسبة">
-          <button type="button" class="filter is-active" data-filter="all" aria-pressed="true">الكل <span>20</span></button>
+          <button type="button" class="filter is-active" data-filter="all" aria-pressed="true">الكل <span>22</span></button>
+          <button type="button" class="filter" data-filter="christmas" aria-pressed="false">الميلاد ورأس السنة <span>3</span></button>
           <button type="button" class="filter" data-filter="birthday" aria-pressed="false">أعياد الميلاد <span>8</span></button>
           <button type="button" class="filter" data-filter="wedding" aria-pressed="false">الأفراح والخطوبة <span>2</span></button>
           <button type="button" class="filter" data-filter="baptism" aria-pressed="false">المعمودية والمناولة <span>1</span></button>
@@ -65,6 +66,18 @@
         </div>
 
         <ul class="album" id="album">
+          <li class="album__item" data-cat="christmas">
+            <button type="button" class="album__btn media" aria-label="تكبير: كيكة الميلاد بالشوكولاتة وأكواز الصنوبر">
+              <img src="images/christmas-chocolate-pinecones.jpg" alt="كيكة الميلاد بالشوكولاتة وأكواز الصنوبر" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>الميلاد ورأس السنة</span>كيكة الميلاد بالشوكولاتة وأكواز الصنوبر</p>
+          </li>
+          <li class="album__item" data-cat="christmas">
+            <button type="button" class="album__btn media" aria-label="تكبير: تشيز كيك الميلاد بالفراولة والتوت">
+              <img src="images/christmas-cheesecake-berries.jpg" alt="تشيز كيك الميلاد بالفراولة والتوت" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>الميلاد ورأس السنة</span>تشيز كيك الميلاد بالفراولة والتوت</p>
+          </li>
           <li class="album__item" data-cat="hospitality">
             <button type="button" class="album__btn media" aria-label="تكبير: طاولة ضيافة في قاعة أفراح">
               <img src="images/hospitality-dessert-table.jpg" alt="طاولة ضيافة في قاعة أفراح" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
@@ -155,7 +168,7 @@
             </button>
             <p class="album__cap"><span>الضيافة</span>كاسات حلى متنوعة</p>
           </li>
-          <li class="album__item" data-cat="birthday">
+          <li class="album__item" data-cat="birthday christmas">
             <button type="button" class="album__btn media" aria-label="تكبير: كيكة رجل الثلج">
               <img src="images/birthday-snowman.jpg" alt="كيكة رجل الثلج" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
             </button>
@@ -271,7 +284,7 @@
           b.classList.toggle('is-active', on);
           b.setAttribute('aria-pressed', on ? 'true' : 'false');
         });
-        items.forEach(function (it) { it.hidden = !(cat === 'all' || it.dataset.cat === cat); });
+        items.forEach(function (it) { it.hidden = !(cat === 'all' || it.dataset.cat.split(' ').indexOf(cat) !== -1); });
       }
       buttons.forEach(function (b) {
         b.addEventListener('click', function () {

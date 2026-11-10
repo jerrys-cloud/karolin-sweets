@@ -1273,3 +1273,12 @@ html:has(.promo[open]) { overflow: hidden; }
   .festive-bar__track { animation: none; }
   .snow { display: none; }
 }
+
+/* في الهاتف: نافذة أقصر كي تظهر كل الأزرار دون تمرير */
+@media (max-width: 560px) {
+  .promo__media { --ratio: 16 / 9; }
+  .promo__list { display: none; }
+  .promo__actions { gap: 10px; }
+  .promo__actions .btn { flex-basis: 100%; }
+  .promo__later { margin-inline: auto; }
+}

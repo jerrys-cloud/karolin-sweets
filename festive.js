@@ -146,9 +146,10 @@
     dialog.querySelectorAll('[data-promo-close]').forEach(function (el) {
       el.addEventListener('click', close);
     });
-    // زر الطلب: يغلق النافذة ثم ينتقل إلى قسم التواصل
-    var order = dialog.querySelector('[data-promo-order]');
-    if (order) order.addEventListener('click', close);
+    // زرّا الطلب والمعرض: يغلقان النافذة ثم ينتقلان إلى وجهتهما
+    dialog.querySelectorAll('[data-promo-order]').forEach(function (el) {
+      el.addEventListener('click', close);
+    });
     // مفتاح Esc
     dialog.addEventListener('cancel', function (e) { e.preventDefault(); close(); });
     // النقر خارج النافذة
