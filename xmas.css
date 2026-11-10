@@ -297,7 +297,7 @@
 
 .xcards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(20px, 2.4vw, 32px);
 }
 
@@ -499,11 +499,13 @@
    التجاوب
    ========================================================= */
 @media (max-width: 900px) {
+  .xcards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .xseason__grid { grid-template-columns: 1fr; max-inline-size: 520px; margin-inline: auto; }
   .bauble--far { display: none; }
 }
 
 @media (max-width: 560px) {
+  .xcards { grid-template-columns: 1fr; }
   .xhero { min-block-size: auto; }
   .xhero__inner { padding-block: calc(var(--header-h) + var(--promo-h) + 96px) 80px; }
   .xhero__lead { font-size: 1.02rem; }
