@@ -524,3 +524,107 @@
   .xhero__greet span { animation: none !important; opacity: 0; }
   .xhero__greet span:first-child { opacity: 1; }
 }
+
+/* =========================================================
+   فعاليات الكريسماس للأطفال
+   ========================================================= */
+.xact {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(60% 50% at 50% 0%, rgba(168, 35, 58, .28), transparent 70%),
+    linear-gradient(180deg, var(--crimson-900), #1d0a0e 60%, var(--cocoa-950));
+  border-block-start: 1px solid rgba(230, 207, 154, .18);
+}
+.xact__eyebrow {
+  margin: 0 0 6px !important;
+  color: var(--gold-300) !important;
+  font-size: .95rem !important;
+  letter-spacing: .08em;
+}
+.xact__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 2.4vw, 30px);
+}
+.xact__card {
+  position: relative;
+  padding: 34px 26px 30px;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  background: linear-gradient(180deg, rgba(255, 244, 221, .07), rgba(255, 244, 221, .02));
+  border: 1px solid rgba(230, 207, 154, .22);
+  transition: transform .5s var(--ease), border-color .5s var(--ease), box-shadow .5s var(--ease);
+}
+.xact__card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(230, 207, 154, .6);
+  box-shadow: 0 18px 50px -20px rgba(212, 179, 115, .45);
+}
+.xact__icon {
+  display: inline-grid;
+  place-items: center;
+  inline-size: 84px;
+  block-size: 84px;
+  margin-block-end: 16px;
+  border-radius: 50%;
+  color: var(--gold-300);
+  background: radial-gradient(circle at 35% 30%, var(--crimson-500), var(--crimson-800));
+  border: 1px solid rgba(230, 207, 154, .5);
+  box-shadow: 0 0 0 6px rgba(168, 35, 58, .15);
+}
+.xact__icon svg { inline-size: 44px; block-size: 44px; }
+.xact__card h3 { margin: 0 0 8px; font-family: var(--font-serif); font-size: 1.4rem; color: var(--cream-50); }
+.xact__card p { margin: 0; color: rgba(245, 237, 225, .74); font-size: .98rem; line-height: 1.8; }
+
+.xact__facts {
+  list-style: none;
+  margin: clamp(28px, 4vw, 44px) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+.xact__facts li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: var(--radius);
+  background: rgba(11, 26, 20, .55);
+  border: 1px solid rgba(230, 207, 154, .16);
+}
+.xact__facts svg { flex: none; inline-size: 34px; block-size: 34px; color: var(--gold-300); }
+.xact__facts span { display: flex; flex-direction: column; font-size: .9rem; color: rgba(245, 237, 225, .7); line-height: 1.5; }
+.xact__facts strong { color: var(--cream-50); font-size: 1rem; font-weight: 700; }
+
+.xact__book {
+  margin-block-start: clamp(24px, 3vw, 36px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px 28px;
+  padding: 24px clamp(20px, 3vw, 36px);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(120deg, rgba(212, 179, 115, .16), rgba(212, 179, 115, .05));
+  border: 1px solid rgba(230, 207, 154, .4);
+}
+.xact__dates { display: grid; gap: 10px; }
+.xact__dates p { display: flex; align-items: center; gap: 12px; margin: 0; color: rgba(245, 237, 225, .85); font-size: 1.02rem; }
+.xact__dates svg { flex: none; inline-size: 28px; block-size: 28px; color: var(--gold-300); }
+.xact__dates strong { color: var(--gold-300); }
+
+@media (max-width: 900px) {
+  .xact__grid { grid-template-columns: 1fr; max-inline-size: 520px; margin-inline: auto; }
+  .xact__facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .xact__book { justify-content: center; text-align: start; }
+}
+@media (max-width: 560px) {
+  .xact__facts { grid-template-columns: 1fr; }
+  .xact__book .btn { inline-size: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .xact__card { transition: none !important; }
+}
