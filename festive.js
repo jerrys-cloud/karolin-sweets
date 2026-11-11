@@ -160,7 +160,15 @@
     }, 2000);
   }
 
-  function init() { startSnow(); setupPromo(); }
+  /* ---------------- ٣) فيديو الفعاليات: يحترم تفضيل تقليل الحركة ---------------- */
+  function setupVideos() {
+    if (!reduceMotion) return;
+    document.querySelectorAll('video[autoplay]').forEach(function (v) {
+      v.removeAttribute('autoplay'); v.pause(); v.controls = true;
+    });
+  }
+
+  function init() { startSnow(); setupPromo(); setupVideos(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();

@@ -628,3 +628,37 @@
 @media (prefers-reduced-motion: reduce) {
   .xact__card { transition: none !important; }
 }
+
+.xact__video {
+  position: relative;
+  max-inline-size: 880px;
+  margin: 0 auto clamp(36px, 5vw, 56px);
+  padding: 8px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(240, 220, 174, .55), rgba(193, 154, 85, .25) 40%, rgba(240, 220, 174, .5));
+  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, .8), 0 0 40px -10px rgba(212, 179, 115, .3);
+}
+.xact__video video {
+  display: block;
+  inline-size: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: calc(var(--radius-lg) - 8px);
+  background: var(--cocoa-950);
+}
+.xact__video figcaption {
+  position: absolute;
+  inset-block-end: 22px;
+  inset-inline-start: 22px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: .88rem;
+  color: var(--cream-50);
+  background: rgba(20, 14, 12, .72);
+  border: 1px solid rgba(230, 207, 154, .35);
+  backdrop-filter: blur(4px);
+}
+@media (max-width: 560px) {
+  .xact__video { padding: 5px; }
+  .xact__video figcaption { position: static; display: block; margin-block-start: 10px; text-align: center; background: none; border: 0; padding: 0; color: rgba(245, 237, 225, .75); }
+}
