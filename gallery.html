@@ -56,16 +56,22 @@
     <section class="section album-section">
       <div class="container">
         <div class="filters" role="toolbar" aria-label="تصفية حسب المناسبة">
-          <button type="button" class="filter is-active" data-filter="all" aria-pressed="true">الكل <span>33</span></button>
-          <button type="button" class="filter" data-filter="christmas" aria-pressed="false">الميلاد ورأس السنة <span>10</span></button>
+          <button type="button" class="filter is-active" data-filter="all" aria-pressed="true">الكل <span>44</span></button>
+          <button type="button" class="filter" data-filter="christmas" aria-pressed="false">الميلاد ورأس السنة <span>11</span></button>
           <button type="button" class="filter" data-filter="birthday" aria-pressed="false">أعياد الميلاد <span>8</span></button>
           <button type="button" class="filter" data-filter="wedding" aria-pressed="false">الأفراح والخطوبة <span>5</span></button>
-          <button type="button" class="filter" data-filter="baptism" aria-pressed="false">المعمودية والمناولة <span>2</span></button>
+          <button type="button" class="filter" data-filter="baptism" aria-pressed="false">المعمودية والمناولة <span>12</span></button>
           <button type="button" class="filter" data-filter="kids" aria-pressed="false">الأطفال والورشات <span>4</span></button>
           <button type="button" class="filter" data-filter="hospitality" aria-pressed="false">الضيافة <span>5</span></button>
         </div>
 
         <ul class="album" id="album">
+          <li class="album__item" data-cat="christmas">
+            <button type="button" class="album__btn media" aria-label="تكبير: كيكة «Hello» لرأس السنة بالرمان والشوكولاتة">
+              <img src="images/christmas-hello-newyear.jpg" alt="كيكة «Hello» لرأس السنة بالرمان والشوكولاتة" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>الميلاد ورأس السنة</span>كيكة «Hello» لرأس السنة بالرمان والشوكولاتة</p>
+          </li>
           <li class="album__item" data-cat="christmas">
             <button type="button" class="album__btn media" aria-label="تكبير: كيكة رأس السنة بالفيونكة الحمراء وكرات ذهبية">
               <img src="images/christmas-newyear-red-bow.jpg" alt="كيكة رأس السنة بالفيونكة الحمراء وكرات ذهبية" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
@@ -161,6 +167,66 @@
               <img src="images/birthday-unicorn.jpg" alt="كيكة اليونيكورن" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
             </button>
             <p class="album__cap"><span>أعياد الميلاد</span>كيكة اليونيكورن</p>
+          </li>
+          <li class="album__item" data-cat="baptism">
+            <button type="button" class="album__btn media" aria-label="تكبير: كيكة المناولة الأولى بالإنجيل والمسبحة">
+              <img src="images/baptism-communion-bible-rosary.jpg" alt="كيكة المناولة الأولى بالإنجيل والمسبحة" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>المعمودية والمناولة</span>كيكة المناولة الأولى بالإنجيل والمسبحة</p>
+          </li>
+          <li class="album__item" data-cat="baptism">
+            <button type="button" class="album__btn media" aria-label="تكبير: كيكة المناولة الأولى الوردية بالماكرون وورق الذهب">
+              <img src="images/baptism-communion-pink-girl.jpg" alt="كيكة المناولة الأولى الوردية بالماكرون وورق الذهب" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>المعمودية والمناولة</span>كيكة المناولة الأولى الوردية بالماكرون وورق الذهب</p>
+          </li>
+          <li class="album__item" data-cat="baptism">
+            <button type="button" class="album__btn media" aria-label="تكبير: كيكة المناولة الأولى بالصليب والحمامة الذهبية">
+              <img src="images/baptism-communion-dove-cross.jpg" alt="كيكة المناولة الأولى بالصليب والحمامة الذهبية" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>المعمودية والمناولة</span>كيكة المناولة الأولى بالصليب والحمامة الذهبية</p>
+          </li>
+          <li class="album__item" data-cat="baptism">
+            <button type="button" class="album__btn media" aria-label="تكبير: كيكة المعمودية بالإنجيل والمسبحة والاسم الذهبي">
+              <img src="images/baptism-maher.jpg" alt="كيكة المعمودية بالإنجيل والمسبحة والاسم الذهبي" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>المعمودية والمناولة</span>كيكة المعمودية بالإنجيل والمسبحة والاسم الذهبي</p>
+          </li>
+          <li class="album__item" data-cat="baptism">
+            <button type="button" class="album__btn media" aria-label="تكبير: كيكة طابقين بالورد الوردي والصليب">
+              <img src="images/baptism-pink-roses-two-tier.jpg" alt="كيكة طابقين بالورد الوردي والصليب" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>المعمودية والمناولة</span>كيكة طابقين بالورد الوردي والصليب</p>
+          </li>
+          <li class="album__item" data-cat="baptism">
+            <button type="button" class="album__btn media" aria-label="تكبير: كيكة بيضاء بالصليب الذهبي وسنابل القمح والماكرون">
+              <img src="images/baptism-cross-wheat.jpg" alt="كيكة بيضاء بالصليب الذهبي وسنابل القمح والماكرون" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>المعمودية والمناولة</span>كيكة بيضاء بالصليب الذهبي وسنابل القمح والماكرون</p>
+          </li>
+          <li class="album__item" data-cat="baptism">
+            <button type="button" class="album__btn media" aria-label="تكبير: كيك بوبس المناولة الأولى بالكأس والصليب">
+              <img src="images/baptism-communion-cakepops.jpg" alt="كيك بوبس المناولة الأولى بالكأس والصليب" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>المعمودية والمناولة</span>كيك بوبس المناولة الأولى بالكأس والصليب</p>
+          </li>
+          <li class="album__item" data-cat="baptism">
+            <button type="button" class="album__btn media" aria-label="تكبير: كيك سيكلز بالملائكة والصلبان الذهبية">
+              <img src="images/baptism-cakesicles-angels.jpg" alt="كيك سيكلز بالملائكة والصلبان الذهبية" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>المعمودية والمناولة</span>كيك سيكلز بالملائكة والصلبان الذهبية</p>
+          </li>
+          <li class="album__item" data-cat="baptism">
+            <button type="button" class="album__btn media" aria-label="تكبير: كب كيك أبيض بالملائكة والصلبان الذهبية">
+              <img src="images/baptism-cupcakes-angels.jpg" alt="كب كيك أبيض بالملائكة والصلبان الذهبية" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>المعمودية والمناولة</span>كب كيك أبيض بالملائكة والصلبان الذهبية</p>
+          </li>
+          <li class="album__item" data-cat="baptism">
+            <button type="button" class="album__btn media" aria-label="تكبير: كاسات حلى بالصليب الذهبي وكرات جوز الهند">
+              <img src="images/baptism-dessert-cup-cross.jpg" alt="كاسات حلى بالصليب الذهبي وكرات جوز الهند" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty');this.remove()">
+            </button>
+            <p class="album__cap"><span>المعمودية والمناولة</span>كاسات حلى بالصليب الذهبي وكرات جوز الهند</p>
           </li>
           <li class="album__item" data-cat="baptism">
             <button type="button" class="album__btn media" aria-label="تكبير: كيكة «God Bless» بالصليب الذهبي وزهور الجبسوفيلا">
