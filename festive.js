@@ -125,7 +125,7 @@
     var dialog = document.getElementById('season-promo');
     if (!dialog || typeof dialog.showModal !== 'function') return;
 
-    var KEY = 'karolin-season-promo-seen';
+    var KEY = 'karolin-workshop-promo-seen';
     var seen = false;
     try { seen = sessionStorage.getItem(KEY) === '1'; } catch (e) {}
     if (seen) return;                                 // تظهر مرة واحدة في كل زيارة

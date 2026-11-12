@@ -1282,3 +1282,14 @@ html:has(.promo[open]) { overflow: hidden; }
   .promo__actions .btn { flex-basis: 100%; }
   .promo__later { margin-inline: auto; }
 }
+
+.workshop__more {
+  display: inline-block;
+  margin-inline-start: 18px;
+  color: var(--cocoa-900);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--gold-500, #c19a55);
+  text-underline-offset: 6px;
+}
+.workshop__more:hover { color: var(--cocoa-700); }
