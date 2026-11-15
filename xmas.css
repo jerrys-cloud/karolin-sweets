@@ -774,3 +774,7 @@
 .kit--wide { grid-column: 1 / -1; background: radial-gradient(80% 120% at 50% 0%, rgba(168, 35, 58, .35), transparent 70%), linear-gradient(180deg, #22161199, #170f0c); }
 .kit--wide .kit__list { grid-auto-flow: column; gap: 6px 28px; }
 @media (max-width: 680px) { .kit--wide .kit__list { grid-auto-flow: row; } }
+.kit--third { grid-column: span 2; }
+.xact__card p strong { color: var(--gold-300); white-space: nowrap; }
+@media (max-width: 1100px) { .kit--third { grid-column: span 1; } .kits > .kit:last-child:nth-child(odd) { grid-column: 1 / -1; } }
+@media (max-width: 680px) { .kits > .kit:last-child:nth-child(odd) { grid-column: auto; } }
