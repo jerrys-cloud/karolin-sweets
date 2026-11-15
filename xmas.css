@@ -778,3 +778,96 @@
 .xact__card p strong { color: var(--gold-300); white-space: nowrap; }
 @media (max-width: 1100px) { .kit--third { grid-column: span 1; } .kits > .kit:last-child:nth-child(odd) { grid-column: 1 / -1; } }
 @media (max-width: 680px) { .kits > .kit:last-child:nth-child(odd) { grid-column: auto; } }
+
+/* =========================================================
+   تشكيلة كيك الأعياد — لوحة العنوان وسانتا يطلّ فوقها
+   ========================================================= */
+.xcakes {
+  background:
+    radial-gradient(45% 35% at 100% 0%, rgba(168, 35, 58, .42), transparent 70%),
+    radial-gradient(45% 40% at 0% 100%, rgba(29, 74, 54, .6), transparent 70%),
+    radial-gradient(40% 30% at 50% 0%, rgba(212, 179, 115, .10), transparent 70%),
+    linear-gradient(180deg, var(--pine-950) 0%, #160b0d 55%, var(--cocoa-950) 100%);
+}
+.xcakes::before,
+.xcakes::after {                          /* شريط حلوى العصا بالأحمر والذهبي والأخضر */
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  block-size: 6px;
+  background: repeating-linear-gradient(135deg,
+    var(--crimson-500) 0 12px, #f0dcae 12px 16px, var(--pine-800) 16px 28px, #f0dcae 28px 32px);
+  opacity: .9;
+}
+.xcakes::before { inset-block-start: 0; box-shadow: 0 1px 0 rgba(240, 220, 174, .5); }
+.xcakes::after  { inset-block-end: 0; box-shadow: 0 -1px 0 rgba(240, 220, 174, .5); }
+
+.xplaque {
+  position: relative;
+  display: inline-block;
+  margin-block-start: 64px;
+  padding: 16px clamp(28px, 4vw, 52px) 18px;
+  border-radius: 20px;
+  background:
+    linear-gradient(135deg, rgba(240, 220, 174, .14), transparent 40%),
+    linear-gradient(120deg, var(--crimson-700), var(--crimson-900) 55%, var(--pine-900));
+  border: 1px solid rgba(230, 207, 154, .65);
+  box-shadow: 0 0 0 5px rgba(212, 179, 115, .08), 0 24px 50px -24px rgba(0, 0, 0, .8);
+  isolation: isolate;
+}
+.xplaque::before {                        /* إطار ذهبي داخلي */
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border-radius: 15px;
+  border: 1px dashed rgba(230, 207, 154, .35);
+  pointer-events: none;
+}
+.xplaque h2 { position: relative; z-index: 2; }
+
+.xplaque__santa {                         /* نافذة تقصّ سانتا عند حافة اللوحة */
+  position: absolute;
+  inset-block-end: calc(100% - 2px);
+  inset-inline-end: clamp(14px, 3vw, 34px);
+  z-index: -1;
+  inline-size: 92px;
+  block-size: 76px;
+  overflow: hidden;
+  pointer-events: none;
+}
+.xplaque__santa-in {
+  inline-size: 100%;
+  transform: translate3d(0, 34px, 0);
+  animation: x-santa-peek 9s cubic-bezier(.45, 0, .2, 1) 1.2s infinite;
+  will-change: transform;
+}
+.xplaque__santa svg { display: block; inline-size: 100%; block-size: auto; }
+.xplaque__mitt {                          /* قفّازا سانتا ممسكان بحافة اللوحة */
+  position: absolute;
+  inset-block-start: -7px;
+  z-index: 3;
+  inline-size: 15px;
+  block-size: 13px;
+  border-radius: 50% 50% 40% 40%;
+  background: radial-gradient(circle at 40% 35%, #2a6a4c, #1d4a36 70%);
+  border: 1px solid #e6cf9a;
+  pointer-events: none;
+}
+.xplaque__mitt--a { inset-inline-end: calc(clamp(14px, 3vw, 34px) + 10px); }
+.xplaque__mitt--b { inset-inline-end: calc(clamp(14px, 3vw, 34px) + 66px); }
+
+@keyframes x-santa-peek {
+  0%, 8%    { transform: translate3d(0, 34px, 0) rotate(0); }
+  16%       { transform: translate3d(0, 2px, 0) rotate(-4deg); }
+  20%       { transform: translate3d(0, 6px, 0) rotate(3deg); }
+  24%, 58%  { transform: translate3d(0, 4px, 0) rotate(0); }
+  66%, 100% { transform: translate3d(0, 34px, 0) rotate(0); }
+}
+@media (max-width: 560px) {
+  .xplaque { padding-inline: 22px; }
+  .xplaque__santa { inline-size: 78px; block-size: 64px; }
+  .xplaque__mitt--b { inset-inline-end: calc(clamp(14px, 3vw, 34px) + 56px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .xplaque__santa-in { animation: none !important; transform: translate3d(0, 4px, 0); }
+}

@@ -1293,3 +1293,74 @@ html:has(.promo[open]) { overflow: hidden; }
   text-underline-offset: 6px;
 }
 .workshop__more:hover { color: var(--cocoa-700); }
+
+/* =========================================================
+   سانتا يطلّ من أسفل الشاشة (الصفحة الرئيسية)
+   لا يعترض النقرات — حركة transform فقط لأداء سلس
+   ========================================================= */
+.santa-peek {
+  position: fixed;
+  inset-block-end: 0;
+  left: clamp(10px, 3vw, 44px);           /* زاوية أسفل اليسار = نهاية السطر في RTL */
+  z-index: 30;
+  inline-size: clamp(88px, 9vw, 134px);
+  pointer-events: none;
+  transform: translate3d(0, 110%, 0);
+  transform-origin: 50% 100%;
+  animation: santa-peek 22s cubic-bezier(.45, 0, .2, 1) 6s infinite;
+  will-change: transform;
+}
+.santa-peek::before {                     /* هالة ذهبية خفيفة خلفه */
+  content: "";
+  position: absolute;
+  inset: 18% -18% -10%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(240, 220, 174, .38), rgba(240, 220, 174, 0));
+}
+.santa-peek svg {
+  position: relative;
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  filter: drop-shadow(0 -6px 14px rgba(20, 14, 12, .45));
+}
+.santa-peek__bob { animation: santa-bob 2.4s ease-in-out infinite; }
+.santa-peek .santa__arm { transform-origin: 126px 146px; animation: santa-wave .8s ease-in-out infinite alternate; }
+.santa-peek .santa__hat { transform-origin: 80px 60px; animation: santa-hat 2.4s ease-in-out infinite; }
+
+@keyframes santa-peek {
+  0%, 3%   { transform: translate3d(0, 110%, 0) rotate(0); }
+  8%       { transform: translate3d(0, 0, 0) rotate(-5deg); }
+  10%      { transform: translate3d(0, 6%, 0) rotate(3deg); }
+  12%, 24% { transform: translate3d(0, 4%, 0) rotate(-1deg); }
+  27%      { transform: translate3d(0, 10%, 0) rotate(4deg); }
+  32%, 100% { transform: translate3d(0, 110%, 0) rotate(0); }
+}
+@keyframes santa-wave { from { transform: rotate(-14deg); } to { transform: rotate(16deg); } }
+@keyframes santa-bob  { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
+@keyframes santa-hat  { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-3deg); } }
+
+@media (max-width: 560px) {
+  .santa-peek { inline-size: 84px; left: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .santa-peek { display: none; }
+}
+
+/* فلتر الأعياد في المعرض: قبعة سانتا وألوان الموسم */
+.filter--xmas { position: relative; padding-inline-start: 40px; }
+.filter__hat {
+  position: absolute;
+  inset-inline-start: 12px;
+  inset-block-start: 50%;
+  inline-size: 22px;
+  block-size: 17px;
+  transform: translateY(-58%) rotate(-8deg);
+  transition: transform .4s var(--ease);
+}
+.filter--xmas:hover .filter__hat { transform: translateY(-62%) rotate(6deg); }
+.filter--xmas.is-active {
+  background: linear-gradient(120deg, #7a1628, #3b0a14 60%, #173527);
+  border-color: #d4b373;
+  color: var(--cream-50);
+}
