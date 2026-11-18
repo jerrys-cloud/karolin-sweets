@@ -324,6 +324,22 @@ window.KAROLIN_DICT = {
   "احجزوا من هلّق وجهّزوا فعالياتكم": ["Book Now and Get Your Activities Ready", "הזמינו כבר עכשיו והתכוננו לפעילויות"],
   "بأحلى أجواء الكريسماس — الأماكن والكميات محدودة، والحجز حتى 30.11.": ["In the sweetest Christmas spirit — places and quantities are limited, bookings until 30.11.", "באווירת הכריסמס הכי מתוקה — המקומות והכמויות מוגבלים, וההרשמה עד 30.11."],
 
+  /* ---------- المفضّلة ---------- */
+  "إضافة إلى المفضّلة": ["Add to favourites", "הוספה למועדפים"],
+  "إزالة من المفضّلة": ["Remove from favourites", "הסרה מהמועדפים"],
+  "أُضيف إلى المفضّلة ♥": ["Added to favourites ♥", "נוסף למועדפים ♥"],
+  "أُزيل من المفضّلة": ["Removed from favourites", "הוסר מהמועדפים"],
+  "مفضّلتي": ["My Favourites", "המועדפים שלי"],
+  "✦ قائمة الأمنيات": ["✦ Wishlist", "✦ רשימת משאלות"],
+  "احفظوا التصاميم التي تعجبكم، ثم أرسلوها لكارولين دفعة واحدة.": ["Save the designs you love, then send them all to Karolin at once.", "שמרו את העיצובים שאהבתם, ושלחו את כולם לקרולין בבת אחת."],
+  "لم تحفظوا أي تصميم بعد": ["No saved designs yet", "עדיין לא שמרתם עיצובים"],
+  "اضغطوا على القلب ♡ في أي صورة لإضافتها هنا.": ["Tap the heart ♡ on any photo to add it here.", "לחצו על הלב ♡ בכל תמונה כדי להוסיף אותה לכאן."],
+  "تصفّحوا المعرض": ["Browse the gallery", "לגלריה"],
+  "أرسلوا قائمتي عبر واتساب": ["Send my wishlist via WhatsApp", "שליחת הרשימה שלי בוואטסאפ"],
+  "مسح الكل": ["Clear all", "ניקוי הכול"],
+  "إزالة": ["Remove", "הסרה"],
+  "عرض الصورة": ["View photo", "צפייה בתמונה"],
+
   /* ---------- نافذة «اطلبوا كيكة مثل هذه» ---------- */
   "✦ اطلبوا مثلها": ["✦ Order one like this", "✦ להזמין כזו"],
   "✦ تصميم مستوحى من أعمالنا": ["✦ Inspired by our work", "✦ בהשראת העבודות שלנו"],
@@ -341,4 +357,11 @@ window.KAROLIN_ORDER_MSG = {
   ar: "مرحبًا كارولين 👋\nأودّ طلب كيكة مثل هذه الصورة تمامًا:\n«{title}»\n{url}\n\nالمناسبة: \nالتاريخ: \nعدد الأشخاص: ",
   en: "Hello Karolin 👋\nI'd love to order a cake exactly like the one in this photo:\n“{title}”\n{url}\n\nOccasion: \nDate: \nNumber of guests: ",
   he: "שלום קרולין 👋\nאשמח להזמין עוגה בדיוק כמו בתמונה הזו:\n«{title}»\n{url}\n\nאירוע: \nתאריך: \nמספר אורחים: "
+};
+
+/* رسالة إرسال قائمة المفضّلة — {list} القائمة المرقّمة */
+window.KAROLIN_WISH_MSG = {
+  ar: "مرحبًا كارولين 👋\nهذه التصاميم التي أعجبتني من موقعكم:\n\n{list}\n\nأودّ الاستفسار عن طلب أحدها أو تصميم مشابه.\nالمناسبة: \nالتاريخ: \nعدد الأشخاص: ",
+  en: "Hello Karolin 👋\nThese are the designs I loved on your website:\n\n{list}\n\nI'd like to ask about ordering one of them or something similar.\nOccasion: \nDate: \nNumber of guests: ",
+  he: "שלום קרולין 👋\nאלה העיצובים שאהבתי באתר שלכם:\n\n{list}\n\nאשמח לשמוע על הזמנה של אחד מהם או של עיצוב דומה.\nאירוע: \nתאריך: \nמספר אורחים: "
 };
