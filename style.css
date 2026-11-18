@@ -56,7 +56,7 @@ body {
   line-height: 1.85;
   color: var(--ink);
   background: var(--cream-50);
-  direction: rtl;
+  direction: inherit;   /* comes from html dir */
   text-align: start;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -1364,3 +1364,210 @@ html:has(.promo[open]) { overflow: hidden; }
   border-color: #d4b373;
   color: var(--cream-50);
 }
+
+/* =========================================================
+   تبديل اللغة — العربية · English · עברית
+   ========================================================= */
+.i18n-pending body { opacity: 0; }
+body { transition: opacity .18s ease; }
+.lang-fading body { opacity: .25; }
+
+.lang-switch {
+  order: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 999px;
+  border: 1px solid rgba(230, 207, 154, .35);
+  background: rgba(20, 14, 12, .35);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+  flex: none;
+}
+.lang-switch__btn {
+  min-inline-size: 38px;
+  block-size: 32px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(245, 237, 225, .75);
+  font: 700 .82rem/1 var(--font-body);
+  letter-spacing: .04em;
+  cursor: pointer;
+  transition: color .3s var(--ease), background .3s var(--ease), box-shadow .3s var(--ease);
+}
+.lang-switch__btn[lang="ar"] { font-family: "Amiri", serif; font-size: 1.05rem; }
+.lang-switch__btn[lang="he"] { font-family: "Heebo", sans-serif; }
+.lang-switch__btn:hover { color: var(--gold-300); }
+.lang-switch__btn:focus-visible { outline: 2px solid var(--gold-300); outline-offset: 2px; }
+.lang-switch__btn.is-active {
+  color: var(--cocoa-900);
+  background: var(--gold-grad);
+  box-shadow: 0 4px 14px -6px rgba(212, 179, 115, .7);
+}
+.nav__menu { order: 2; }
+.brand { order: 0; }
+
+@media (max-width: 900px) {
+  .lang-switch { order: 1; margin-inline-start: auto; }
+  .nav__burger { order: 2; }
+  .nav { gap: 12px; }
+}
+@media (max-width: 380px) {
+  .lang-switch__btn { min-inline-size: 32px; padding: 0 7px; }
+  .brand__tag { display: none; }
+}
+
+/* ---------- الخطوط حسب اللغة ---------- */
+:root[lang="en"] {
+  --font-display: "Cormorant Garamond", "Amiri", serif;
+  --font-serif:   "Cormorant Garamond", "Amiri", serif;
+  --font-body:    "Tajawal", system-ui, sans-serif;
+}
+:root[lang="he"] {
+  --font-display: "Frank Ruhl Libre", "Amiri", serif;
+  --font-serif:   "Frank Ruhl Libre", "Amiri", serif;
+  --font-body:    "Heebo", "Tajawal", system-ui, sans-serif;
+}
+:root[lang="en"] .hero__title,
+:root[lang="en"] .xhero__title { letter-spacing: -.01em; }
+:root[lang="en"] .section-title,
+:root[lang="en"] .xsec-head h2 { letter-spacing: .005em; }
+
+/* ---------- عناصر تعتمد على الاتجاه في الإنجليزية ---------- */
+[dir="ltr"] .link-arrow span,
+[dir="ltr"] .btn > span[aria-hidden="true"] { display: inline-block; transform: scaleX(-1); }
+[dir="ltr"] .link-arrow:hover span { transform: scaleX(-1) translateX(-6px); }
+[dir="ltr"] .lightbox__nav { transform: scaleX(-1); }
+[dir="ltr"] .festive-bar__track { animation-name: festive-slide-ltr; }
+@keyframes festive-slide-ltr { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+[dir="ltr"] .santa-peek { left: auto; right: clamp(10px, 3vw, 44px); }
+@media (max-width: 560px) { [dir="ltr"] .santa-peek { right: 8px; } }
+
+/* =========================================================
+   «اطلبوا كيكة مثل هذه» — الصور القابلة للطلب
+   ========================================================= */
+.is-orderable { cursor: pointer; }
+.is-orderable:focus-visible { outline: 2px solid var(--gold-300); outline-offset: 4px; }
+.order-hint {
+  position: absolute;
+  inset-block-end: 14px;
+  inset-inline-start: 14px;
+  z-index: 3;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font: 700 .82rem/1.2 var(--font-body);
+  color: var(--cocoa-900);
+  background: var(--gold-grad);
+  box-shadow: 0 8px 22px -8px rgba(0, 0, 0, .6);
+  opacity: 0;
+  transform: translate3d(0, 8px, 0);
+  transition: opacity .35s var(--ease), transform .35s var(--ease);
+  pointer-events: none;
+  white-space: nowrap;
+}
+.is-orderable:hover .order-hint,
+.is-orderable:focus-visible .order-hint { opacity: 1; transform: none; }
+@media (hover: none) {                    /* على الهاتف: تلميح صغير ظاهر دائمًا */
+  .order-hint { opacity: .95; transform: none; padding: 5px 11px; font-size: .75rem; }
+}
+.gallery__item .order-hint { inset-block-end: auto; inset-block-start: 14px; }
+
+/* ---------- النافذة ---------- */
+.order-modal {
+  inline-size: min(880px, calc(100vw - 32px));
+  max-block-size: calc(100dvh - 32px);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--cream-50);
+  overflow: visible;
+}
+.order-modal[open] { animation: promo-in .5s var(--ease) both; }
+.order-modal[open]::backdrop { background: rgba(12, 8, 7, .72); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); animation: promo-fade .4s ease both; }
+.order-modal.is-closing { animation: promo-out .35s var(--ease) both; }
+.order-modal.is-closing::backdrop { opacity: 0; transition: opacity .35s; }
+.order-modal__card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  max-block-size: calc(100dvh - 32px);
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(70% 60% at 100% 0%, rgba(212, 179, 115, .14), transparent 60%),
+    linear-gradient(160deg, var(--cocoa-900), var(--cocoa-950));
+  border: 1px solid rgba(230, 207, 154, .35);
+  box-shadow: 0 40px 90px -30px rgba(0, 0, 0, .85), 0 0 0 6px rgba(212, 179, 115, .06);
+}
+.order-modal__media { margin: 0; position: relative; min-block-size: 320px; background: var(--cocoa-950); }
+.order-modal__media img { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; object-fit: cover; }
+.order-modal__media::after {
+  content: "";
+  position: absolute; inset: 0;
+  box-shadow: inset 0 0 0 1px rgba(230, 207, 154, .18);
+  background: linear-gradient(0deg, rgba(20, 14, 12, .35), transparent 40%);
+  pointer-events: none;
+}
+.order-modal__body { display: flex; flex-direction: column; justify-content: center; padding: clamp(26px, 4vw, 44px); overflow-y: auto; }
+.order-modal__eyebrow { margin: 0 0 8px; color: var(--gold-300); font-size: .88rem; letter-spacing: .05em; }
+.order-modal__title {
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+  line-height: 1.3;
+  background: var(--gold-grad);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+}
+.order-modal__name { margin: 0 0 12px; font-family: var(--font-serif); font-size: 1.2rem; color: var(--cream-50); }
+.order-modal__text { margin: 0 0 24px; color: rgba(245, 237, 225, .72); line-height: 1.8; font-size: .98rem; }
+.order-modal__actions { display: flex; flex-direction: column; align-items: stretch; gap: 10px; }
+.order-modal__actions .btn { justify-content: center; gap: 10px; }
+.order-modal__wa svg { inline-size: 20px; block-size: 20px; flex: none; }
+.order-modal__copy {
+  align-self: center;
+  margin-block-start: 4px;
+  padding: 6px 10px;
+  border: 0;
+  background: none;
+  color: rgba(245, 237, 225, .7);
+  font: 500 .9rem var(--font-body);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-color: rgba(212, 179, 115, .6);
+  cursor: pointer;
+}
+.order-modal__copy:hover { color: var(--gold-300); }
+.order-modal__close {
+  position: absolute;
+  inset-block-start: 14px;
+  inset-inline-end: 14px;
+  z-index: 2;
+  inline-size: 40px; block-size: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(230, 207, 154, .5);
+  background: rgba(20, 14, 12, .6);
+  color: var(--cream-50);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background .3s var(--ease);
+}
+.order-modal__close:hover { background: rgba(230, 207, 154, .2); }
+
+@media (max-width: 680px) {
+  .order-modal__card { display: block; overflow-y: auto; }
+  .order-modal__media { min-block-size: 0; }
+  .order-modal__media img { position: relative; display: block; block-size: auto; aspect-ratio: 4 / 3; }
+  .order-modal__body { padding: 22px 20px 24px; overflow: visible; }
+  .order-modal__title { font-size: 1.7rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .order-modal[open], .order-modal.is-closing, .order-modal[open]::backdrop { animation: none; }
+  .order-hint { transition: none; }
+}
+
+/* زر الطلب داخل عارض المعرض */
+.lightbox__order { margin-block-start: 14px; }

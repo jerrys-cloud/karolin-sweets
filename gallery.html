@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
+  <script>(function(){try{var q=/[?&]lang=(en|he)\b/.exec(location.search);var l=q?q[1]:localStorage.getItem('karolin-lang');if(l==='en'||l==='he'){var d=document.documentElement;d.lang=l;d.dir=l==='en'?'ltr':'rtl';d.classList.add('i18n-pending');setTimeout(function(){d.classList.remove('i18n-pending')},2500);}}catch(e){}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>معرض الصور | حلويات كارولين</title>
   <meta name="description" content="حلويات كارولين — كيك وحلويات فاخرة تُصمَّم حسب الطلب لكل مناسبة: أعياد الميلاد، الأفراح، المعمودية، المواليد وحفلات الأطفال.">
@@ -19,7 +20,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Frank+Ruhl+Libre:wght@500;700&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="page-gallery">
@@ -465,8 +466,9 @@
       });
       document.addEventListener('keydown', function (e) {
         if (!lb.open) return;
-        if (e.key === 'ArrowLeft') show(current + 1);   // في الاتجاه من اليمين لليسار: اليسار = التالي
-        if (e.key === 'ArrowRight') show(current - 1);
+        var rtl = document.documentElement.dir !== 'ltr';   // RTL: اليسار = التالي
+        if (e.key === 'ArrowLeft') show(current + (rtl ? 1 : -1));
+        if (e.key === 'ArrowRight') show(current + (rtl ? -1 : 1));
       });
       // السحب على الهاتف
       var x0 = null;
@@ -474,10 +476,13 @@
       lb.addEventListener('touchend', function (e) {
         if (x0 === null) return;
         var dx = e.changedTouches[0].clientX - x0;
-        if (Math.abs(dx) > 50) show(current + (dx > 0 ? 1 : -1));
+        if (Math.abs(dx) > 50) show(current + ((dx > 0) === (document.documentElement.dir !== 'ltr') ? 1 : -1));
         x0 = null;
       });
     })();
   </script>
+  <script src="i18n-dict.js"></script>
+  <script src="i18n.js"></script>
+  <script src="order.js"></script>
 </body>
 </html>
