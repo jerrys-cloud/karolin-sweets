@@ -1,10 +1,10 @@
-# ריל 15 שניות: קרולין סוויטס
+# ריל 26 שניות: קרולין סוויטס
 
 התיקייה הזו נפרדת מהאתר. אף דף באתר לא מקשר אליה, וגוגל לא סורק אותה (`noindex`).
 
 | קובץ | מה זה |
 |---|---|
-| `karolin-reel-15s.mp4` | **הסרטון המוכן**: 1080×1920, ‏30fps, ‏15 שניות. אפשר להעלות אותו ישר לאינסטגרם |
+| `karolin-reel-15s.mp4` | **הסרטון המוכן**: 1080×1920, ‏30fps, ‏26 שניות. אפשר להעלות אותו ישר לאינסטגרם |
 | `reel-15s.html` | האנימציה עצמה, בקובץ אחד שמכיל גם את התמונות. נפתחת בכל דפדפן |
 | `reel-template.html` + `build.py` | המקור לעריכה. אחרי שינוי מריצים `python3 reel/build.py` |
 
@@ -30,7 +30,7 @@
    - מרעננים את הדף, והאנימציה מתחילה אחרי 2 שניות.
    - בסוף עוצרים את ההקלטה מהנקודה האדומה למעלה.
 4. **אנדרואיד:** מגישים מהירה ← "הקלטת מסך" (Screen recorder) ← בלי שמע, ואז אותם צעדים כמו באייפון.
-5. **חיתוך:** בגלריה חותכים את ההתחלה ואת הסוף, כך שיישארו בדיוק 15 שניות.
+5. **חיתוך:** בגלריה חותכים את ההתחלה ואת הסוף, כך שיישארו בדיוק 26 שניות.
    - טיפ: אם המסך של הטלפון ארוך מ-9:16, לבחור בעריכה ← חיתוך ← יחס 9:16.
 
 ---
@@ -43,7 +43,7 @@
 3. **הקלטה:**
    - **Windows:** ‏`Win + Alt + R` ב-Xbox Game Bar, או OBS Studio (חינם) עם Display Capture.
    - **Mac:** ‏`Cmd + Shift + 5` ← "הקלטת קטע נבחר" ← מסמנים רק את המלבן האנכי.
-4. **חיתוך ויחס:** חותכים ל-15 שניות. אם הוקלט מסך רחב, חותכים את המלבן האנכי ל-9:16, למשל ב-CapCut או ב-Clipchamp.
+4. **חיתוך ויחס:** חותכים ל-26 שניות. אם הוקלט מסך רחב, חותכים את המלבן האנכי ל-9:16, למשל ב-CapCut או ב-Clipchamp.
 
 ---
 
@@ -53,8 +53,8 @@
 
 ```bash
 npm i playwright && npx playwright install chromium
-node render.js                      # 450 תמונות לתיקייה frames/
-ffmpeg -framerate 30 -i frames/f%04d.jpg -f lavfi -t 15 -i anullsrc=r=48000:cl=stereo \
+node render.js                      # 780 תמונות לתיקייה frames/
+ffmpeg -framerate 30 -i frames/f%04d.jpg -f lavfi -t 26 -i anullsrc=r=48000:cl=stereo \
   -c:v libx264 -pix_fmt yuv420p -crf 18 -c:a aac -shortest -movflags +faststart karolin-reel-15s.mp4
 ```
 
@@ -67,8 +67,8 @@ const { chromium } = require('playwright');
   await p.goto('file://' + __dirname + '/reel-15s.html?export');
   await p.waitForFunction(() => window.reelReady);
   require('fs').mkdirSync('frames', { recursive: true });
-  for (let f = 0; f < 450; f++) {
-    await p.evaluate(t => renderAt(t), Math.min(f / 30, 14.999));
+  for (let f = 0; f < 780; f++) {
+    await p.evaluate(t => renderAt(t), Math.min(f / 30, 25.999));
     await p.screenshot({ path: `frames/f${String(f).padStart(4, '0')}.jpg`, type: 'jpeg', quality: 95 });
   }
   await b.close();
@@ -91,4 +91,4 @@ const { chromium } = require('playwright');
 
 - **אזור בטוח:** אינסטגרם מכסה בערך 250px למעלה ו-350px למטה עם הכפתורים שלו. כל הטקסט החשוב בסרטון נמצא באמצע, כך שזה לא בעיה.
 - **פס ההתקדמות:** אם הוא מתנגש עם הפס של סטורי, אפשר להשתמש ב-`?bar=0`.
-- **תמונת כיסוי:** כדאי לבחור את הפריים עם "اطلب الآن", בשנייה 14 בערך.
+- **תמונת כיסוי:** כדאי לבחור את הפריים עם "اطلب الآن", בשנייה 24 בערך.
