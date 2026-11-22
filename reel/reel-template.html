@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Karolin Sweets Reel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   Karolin Sweets — 15s vertical reel (1080×1920)
+   Every frame is computed from one time value (t), so the
+   animation is identical when played live or rendered.
+   ========================================================= */
+:root {
+  --cocoa-950: #140e0c;
+  --cocoa-900: #1b1310;
+  --cocoa-800: #2a1d17;
+  --cream: #fbf7f1;
+  --cream-dim: rgba(251, 247, 241, .74);
+  --gold-200: #f6e7c4;
+  --gold-300: #e6cf9a;
+  --gold-400: #d4b373;
+  --gold-500: #c19a55;
+  --gold-grad: linear-gradient(135deg, #f0dcae 0%, #d4b373 45%, #b8904f 70%, #f0dcae 100%);
+  --foil: linear-gradient(100deg, #b8904f 0%, #e6cf9a 30%, #fff6dc 45%, #f0dcae 55%, #c19a55 75%, #e6cf9a 100%);
+  --display: "Aref Ruqaa", "Amiri", serif;
+  --serif: "Amiri", serif;
+  --body: "Tajawal", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: #070504; overflow: hidden; }
+body { font-family: var(--body); color: var(--cream); -webkit-font-smoothing: antialiased; }
+
+/* ---------- viewport fitting ---------- */
+.viewport { position: fixed; inset: 0; display: grid; place-items: center; }
+.stage {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 1080px; height: 1920px;
+  transform-origin: 0 0;
+  overflow: hidden;
+  background:
+    radial-gradient(90% 55% at 50% 38%, #3a271d 0%, rgba(42, 29, 23, 0) 70%),
+    radial-gradient(70% 40% at 100% 100%, rgba(193, 154, 85, .16), transparent 70%),
+    radial-gradient(70% 40% at 0% 0%, rgba(193, 154, 85, .12), transparent 70%),
+    linear-gradient(180deg, #1d1411 0%, var(--cocoa-950) 100%);
+  contain: strict;
+}
+.export .stage { left: 0; top: 0; transform: none !important; }
+
+.layer, .abs { position: absolute; will-change: transform, opacity; }
+.layer { inset: 0; }
+canvas.sparkles { position: absolute; inset: 0; width: 1080px; height: 1920px; pointer-events: none; }
+.grain {
+  position: absolute; inset: 0; pointer-events: none; opacity: .5;
+  background:
+    radial-gradient(120% 70% at 50% 50%, transparent 55%, rgba(0, 0, 0, .55) 100%);
+}
+
+/* ---------- progress bar ---------- */
+.progress { position: absolute; left: 60px; right: 60px; top: 64px; display: flex; gap: 12px; direction: rtl; z-index: 20; }
+.progress span { flex: 1; height: 7px; border-radius: 7px; background: rgba(251, 247, 241, .18); overflow: hidden; }
+.progress i { display: block; height: 100%; width: 0; background: var(--gold-grad); border-radius: 7px; box-shadow: 0 0 12px rgba(240, 220, 174, .6); }
+.no-bar .progress { display: none; }
+
+/* ---------- shared text ---------- */
+.center-x { left: 0; right: 0; text-align: center; }
+.eyebrow { font: 700 40px/1.2 var(--body); letter-spacing: .12em; color: var(--gold-300); }
+.foil {
+  background: var(--foil);
+  background-size: 260% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+}
+.title { font-family: var(--display); font-weight: 700; line-height: 1.25; }
+.sub { font: 500 46px/1.55 var(--body); color: var(--cream-dim); }
+
+/* ---------- scene 1 ---------- */
+.mark { left: 390px; top: 330px; width: 300px; height: 300px; }
+.mark svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.mark__disc {
+  position: absolute; inset: 34px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--gold-grad);
+  box-shadow: 0 0 0 10px rgba(230, 207, 154, .12), 0 30px 80px -20px rgba(212, 179, 115, .55);
+  font: 700 150px/1 var(--display); color: var(--cocoa-900); padding-bottom: 18px;
+}
+.s1-word1 { top: 700px; font: 700 120px/1.2 var(--serif); color: var(--cream); }
+.s1-word2 { top: 820px; font-size: 290px; }
+.s1-line { top: 1220px; left: 50%; height: 3px; width: 420px; margin-left: -210px; background: linear-gradient(90deg, transparent, var(--gold-300), transparent); }
+.s1-en { top: 1270px; font: 500 52px/1.2 "Amiri", serif; letter-spacing: .32em; color: var(--gold-300); direction: ltr; }
+.s1-tag { top: 1370px; }
+
+/* ---------- scene 2 ---------- */
+.s2-head { top: 190px; }
+.s2-title { top: 250px; font-size: 104px; }
+.frame {
+  left: 110px; top: 560px; width: 860px; height: 1020px;
+  border-radius: 46px; overflow: hidden;
+  box-shadow: 0 0 0 3px rgba(230, 207, 154, .75), 0 0 0 14px rgba(230, 207, 154, .08), 0 50px 120px -30px rgba(0, 0, 0, .9);
+  background: var(--cocoa-900);
+}
+.frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; will-change: transform, opacity; }
+.frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(20, 14, 12, .75) 0%, transparent 38%); }
+.chip {
+  left: 0; right: 0; top: 1440px; text-align: center; z-index: 3;
+  font: 700 60px/1.3 var(--serif); color: var(--cream);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, .6);
+}
+.chip small { display: block; font: 600 38px/1.4 var(--body); color: var(--gold-300); letter-spacing: .04em; }
+.dots { left: 0; right: 0; top: 1640px; display: flex; justify-content: center; gap: 18px; direction: ltr; }
+.dots i { width: 18px; height: 18px; border-radius: 50%; background: rgba(251, 247, 241, .25); transition: none; }
+.s2-badge {
+  left: 0; right: 0; top: 1720px; text-align: center;
+  font: 600 42px/1.3 var(--body); color: var(--gold-300);
+}
+
+/* ---------- scene 3 ---------- */
+.s3-title { top: 190px; font-size: 100px; }
+.s3-sub { top: 345px; }
+.pill {
+  left: 50%; top: 455px; height: 92px; padding: 0 40px 0 30px; margin-left: -190px; width: 380px;
+  display: flex; align-items: center; justify-content: center; gap: 18px;
+  border-radius: 92px; border: 2px solid rgba(230, 207, 154, .55);
+  background: rgba(20, 14, 12, .6);
+  font: 700 42px/1 var(--body); color: var(--cream);
+}
+.pill svg { width: 46px; height: 46px; }
+.pill .count {
+  min-width: 58px; height: 58px; border-radius: 58px; padding: 0 12px;
+  display: grid; place-items: center;
+  font: 800 34px/1 var(--body); color: var(--cocoa-900); background: var(--gold-grad);
+  box-shadow: 0 0 0 4px var(--cocoa-950);
+}
+.card {
+  width: 440px; height: 560px; border-radius: 34px; overflow: hidden;
+  background: var(--cocoa-900);
+  box-shadow: 0 0 0 2px rgba(230, 207, 154, .4), 0 30px 70px -26px rgba(0, 0, 0, .9);
+}
+.card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(20, 14, 12, .85) 0%, transparent 34%); }
+.card b { position: absolute; left: 0; right: 0; bottom: 26px; z-index: 2; text-align: center; font: 700 40px/1.3 var(--serif); color: var(--cream); }
+.heart {
+  position: absolute; left: 22px; top: 22px; z-index: 3;
+  width: 84px; height: 84px; border-radius: 50%;
+  display: grid; place-items: center;
+  border: 2px solid rgba(230, 207, 154, .7);
+  background: rgba(20, 14, 12, .55);
+  will-change: transform;
+}
+.heart svg { width: 42px; height: 42px; }
+.heart path { fill: none; stroke: var(--cream); stroke-width: 1.8; stroke-linejoin: round; }
+.heart.on { background: rgba(20, 14, 12, .8); border-color: var(--gold-300); }
+.heart.on path { fill: var(--gold-300); stroke: var(--gold-300); }
+.finger { width: 110px; height: 110px; margin: -55px 0 0 -55px; z-index: 10; pointer-events: none; }
+.finger::before {
+  content: ""; position: absolute; inset: 0; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 246, 220, .95) 0 28%, rgba(240, 220, 174, .55) 30% 58%, rgba(240, 220, 174, 0) 62%);
+  box-shadow: 0 0 40px rgba(240, 220, 174, .5);
+}
+.ripple { width: 110px; height: 110px; margin: -55px 0 0 -55px; border-radius: 50%; border: 4px solid var(--gold-200); z-index: 9; }
+.toast {
+  left: 50%; top: 1785px; width: 560px; margin-left: -280px; height: 84px; border-radius: 84px;
+  display: grid; place-items: center;
+  font: 700 38px/1 var(--body); color: var(--cocoa-900); background: var(--gold-grad);
+  box-shadow: 0 20px 50px -16px rgba(0, 0, 0, .7);
+}
+
+/* ---------- scene 4 ---------- */
+.s4-mark { left: 450px; top: 250px; width: 180px; height: 180px; }
+.s4-mark .mark__disc { inset: 0; font-size: 96px; padding-bottom: 12px; }
+.s4-title { top: 500px; font-size: 118px; line-height: 1.3; }
+.cta {
+  left: 140px; top: 900px; width: 800px; height: 210px; border-radius: 210px;
+  display: grid; place-items: center; overflow: hidden;
+  background: var(--gold-grad);
+  font: 700 118px/1 var(--display); color: var(--cocoa-900); padding-bottom: 14px;
+}
+.cta .shine {
+  position: absolute; top: -20%; bottom: -20%; width: 190px;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .75), transparent);
+  transform: skewX(-18deg);
+}
+.cta-glow { left: 110px; top: 870px; width: 860px; height: 270px; border-radius: 270px; background: radial-gradient(closest-side, rgba(240, 220, 174, .55), transparent); filter: blur(10px); }
+.contact { left: 0; right: 0; top: 1230px; display: grid; justify-items: center; gap: 22px; }
+.contact div { display: flex; align-items: center; gap: 18px; font: 700 50px/1.2 var(--body); color: var(--cream); }
+.contact div.ltr { direction: ltr; }
+.contact svg { width: 54px; height: 54px; flex: none; }
+.contact .web { font: 700 60px/1.2 "Amiri", serif; color: var(--gold-300); letter-spacing: .02em; direction: ltr; }
+.s4-foot { top: 1640px; font: 500 40px/1.4 var(--body); color: rgba(251, 247, 241, .55); letter-spacing: .08em; }
+
+/* ---------- UI (not part of the video) ---------- */
+.ui {
+  position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 50;
+  display: flex; gap: 8px; align-items: center; direction: ltr;
+  padding: 8px; border-radius: 999px;
+  background: rgba(20, 14, 12, .82); border: 1px solid rgba(230, 207, 154, .35);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  transition: opacity .4s;
+  font: 600 14px/1 var(--body);
+}
+.ui button {
+  height: 40px; min-width: 40px; padding: 0 14px; border-radius: 40px; border: 0; cursor: pointer;
+  background: transparent; color: var(--cream); font: inherit;
+}
+.ui button:hover { background: rgba(230, 207, 154, .15); }
+.ui button.primary { background: var(--gold-grad); color: var(--cocoa-900); }
+.ui .time { color: var(--gold-300); min-width: 52px; text-align: center; font-variant-numeric: tabular-nums; }
+.ui-hidden .ui { opacity: 0; pointer-events: none; }
+.clean, .clean * { cursor: none !important; }
+.clean .ui, .export .ui { display: none; }
+.hint {
+  position: fixed; top: 14px; left: 50%; transform: translateX(-50%); z-index: 50;
+  font: 500 13px/1.4 var(--body); color: rgba(251, 247, 241, .6); direction: ltr; text-align: center;
+  transition: opacity .4s;
+}
+.clean .hint, .export .hint, .ui-hidden .hint { opacity: 0; }
+</style>
+</head>
+<body>
+<div class="viewport">
+  <div class="stage" id="stage">
+    <canvas class="sparkles" id="sparkles" width="1080" height="1920"></canvas>
+
+    <!-- ================= Scene 1 · 0–4s · intro ================= -->
+    <div class="layer" id="s1">
+      <div class="abs mark" id="s1-mark">
+        <svg viewBox="0 0 300 300" aria-hidden="true">
+          <circle id="s1-ring" cx="150" cy="150" r="144" fill="none" stroke="#e6cf9a" stroke-width="3" stroke-dasharray="905" stroke-dashoffset="905" transform="rotate(-90 150 150)"/>
+          <circle id="s1-ring2" cx="150" cy="150" r="132" fill="none" stroke="#e6cf9a" stroke-opacity=".35" stroke-width="1.5" stroke-dasharray="830" stroke-dashoffset="830" transform="rotate(90 150 150)"/>
+        </svg>
+        <div class="mark__disc" id="s1-disc">ك</div>
+      </div>
+      <div class="abs center-x s1-word1" id="s1-w1">حلويات</div>
+      <div class="abs center-x title foil s1-word2" id="s1-w2">كارولين</div>
+      <div class="abs s1-line" id="s1-line"></div>
+      <div class="abs center-x s1-en" id="s1-en">KAROLIN SWEETS</div>
+      <div class="abs center-x sub s1-tag" id="s1-tag">كيك وحلويات فاخرة تُصمَّم لمناسبتكم</div>
+    </div>
+
+    <!-- ================= Scene 2 · 4–8s · handcrafted ================= -->
+    <div class="layer" id="s2">
+      <div class="abs center-x eyebrow s2-head" id="s2-eb">✦ صُنعت يدويًا ✦</div>
+      <div class="abs center-x title foil s2-title" id="s2-title">فخامة بكل تفصيل</div>
+      <div class="abs frame" id="s2-frame">
+        <img id="s2-a" src="{{IMG_A}}" alt="">
+        <img id="s2-b" src="{{IMG_B}}" alt="">
+        <img id="s2-c" src="{{IMG_C}}" alt="">
+      </div>
+      <div class="abs chip" id="s2-c1">كيك لكل المناسبات<small>أعياد ميلاد · أفراح · معمودية</small></div>
+      <div class="abs chip" id="s2-c2">حلويات وضيافة فاخرة<small>كاسات حلى · معمول · طاولات ضيافة</small></div>
+      <div class="abs chip" id="s2-c3">تصميم خاص حسب طلبكم<small>ألوانكم · ثيمتكم · أسماؤكم</small></div>
+      <div class="abs dots" id="s2-dots"><i></i><i></i><i></i></div>
+      <div class="abs s2-badge" id="s2-badge">مصنوعة بأجود المكوّنات · طازجة ليوم مناسبتكم</div>
+    </div>
+
+    <!-- ================= Scene 3 · 8–12s · pick & save ================= -->
+    <div class="layer" id="s3">
+      <div class="abs center-x title foil s3-title" id="s3-title">اختاروا تصميمكم</div>
+      <div class="abs center-x sub s3-sub" id="s3-sub">واحفظوا ما يعجبكم في المفضّلة بضغطة ♡</div>
+      <div class="abs pill" id="s3-pill">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path id="s3-pill-heart" d="M12 20.6s-7.6-4.6-9.6-9.3C1 7.9 3.1 4.4 6.6 4.1c2.1-.2 3.9 1 5.4 2.9 1.5-1.9 3.3-3.1 5.4-2.9 3.5.3 5.6 3.8 4.2 7.2-2 4.7-9.6 9.3-9.6 9.3z" fill="none" stroke="#e6cf9a" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        <span>مفضّلتي</span>
+        <span class="count" id="s3-count">0</span>
+      </div>
+      <div class="abs card" id="card0" style="left:560px; top:600px"><img src="{{IMG_D}}" alt=""><b>كيكة الثلج الذهبية</b><span class="heart" id="h0"><svg viewBox="0 0 24 24"><path d="M12 20.6s-7.6-4.6-9.6-9.3C1 7.9 3.1 4.4 6.6 4.1c2.1-.2 3.9 1 5.4 2.9 1.5-1.9 3.3-3.1 5.4-2.9 3.5.3 5.6 3.8 4.2 7.2-2 4.7-9.6 9.3-9.6 9.3z"/></svg></span></div>
+      <div class="abs card" id="card1" style="left:80px; top:600px"><img src="{{IMG_E}}" alt=""><b>كيكة اليونيكورن</b><span class="heart" id="h1"><svg viewBox="0 0 24 24"><path d="M12 20.6s-7.6-4.6-9.6-9.3C1 7.9 3.1 4.4 6.6 4.1c2.1-.2 3.9 1 5.4 2.9 1.5-1.9 3.3-3.1 5.4-2.9 3.5.3 5.6 3.8 4.2 7.2-2 4.7-9.6 9.3-9.6 9.3z"/></svg></span></div>
+      <div class="abs card" id="card2" style="left:560px; top:1190px"><img src="{{IMG_F}}" alt=""><b>كيكة الفيونكة الحمراء</b><span class="heart" id="h2"><svg viewBox="0 0 24 24"><path d="M12 20.6s-7.6-4.6-9.6-9.3C1 7.9 3.1 4.4 6.6 4.1c2.1-.2 3.9 1 5.4 2.9 1.5-1.9 3.3-3.1 5.4-2.9 3.5.3 5.6 3.8 4.2 7.2-2 4.7-9.6 9.3-9.6 9.3z"/></svg></span></div>
+      <div class="abs card" id="card3" style="left:80px; top:1190px"><img src="{{IMG_G}}" alt=""><b>بوكس تزيين البسكوت</b><span class="heart" id="h3"><svg viewBox="0 0 24 24"><path d="M12 20.6s-7.6-4.6-9.6-9.3C1 7.9 3.1 4.4 6.6 4.1c2.1-.2 3.9 1 5.4 2.9 1.5-1.9 3.3-3.1 5.4-2.9 3.5.3 5.6 3.8 4.2 7.2-2 4.7-9.6 9.3-9.6 9.3z"/></svg></span></div>
+      <div class="abs ripple" id="s3-ripple"></div>
+      <div class="abs finger" id="s3-finger"></div>
+      <div class="abs toast" id="s3-toast">أُضيف إلى المفضّلة ♥</div>
+    </div>
+
+    <!-- ================= Scene 4 · 12–15s · CTA ================= -->
+    <div class="layer" id="s4">
+      <div class="abs mark s4-mark" id="s4-mark"><div class="mark__disc">ك</div></div>
+      <div class="abs center-x title foil s4-title" id="s4-title">مناسبتكم القادمة<br>تستحق الأحلى</div>
+      <div class="abs cta-glow" id="s4-glow"></div>
+      <div class="abs cta" id="s4-cta">اطلب الآن<span class="shine" id="s4-shine"></span></div>
+      <div class="abs contact" id="s4-contact">
+        <div class="ltr" id="s4-wa"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#e6cf9a" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3z"/></svg>052-795-8983</div>
+        <div class="web" id="s4-web">karolinsweets.com</div>
+        <div class="ltr" id="s4-ig"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#e6cf9a" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="#e6cf9a" stroke="none"/></svg>@karolinsweets</div>
+      </div>
+      <div class="abs center-x s4-foot" id="s4-foot">حلويات كارولين · عيلبون</div>
+    </div>
+
+    <div class="grain"></div>
+    <div class="progress" id="progress"><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
+  </div>
+</div>
+
+<div class="hint" id="hint">Space = play/pause · R = restart · F = fullscreen · H = hide controls</div>
+<div class="ui" id="ui">
+  <button type="button" class="primary" id="btn-play">❚❚ Pause</button>
+  <button type="button" id="btn-restart">↺ Restart</button>
+  <span class="time" id="time">0.0s</span>
+  <button type="button" id="btn-loop">Loop: on</button>
+  <button type="button" id="btn-bar">Bar: on</button>
+  <button type="button" id="btn-clean">Clean ⤢</button>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var DUR = 15;
+  var q = new URLSearchParams(location.search);
+  var EXPORT = q.has('export');
+  var RECORD = q.has('record');
+  var CLEAN = RECORD || q.has('clean');
+  var loop = !(RECORD || q.has('once'));
+  if (q.get('bar') === '0') document.body.classList.add('no-bar');
+  if (EXPORT) document.documentElement.classList.add('export');
+  if (CLEAN) document.documentElement.classList.add('clean');
+
+  var $ = function (id) { return document.getElementById(id); };
+  var stage = $('stage');
+
+  /* ---------- math ---------- */
+  function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
+  function seg(t, a, b) { return clamp((t - a) / (b - a), 0, 1); }
+  function lerp(a, b, p) { return a + (b - a) * p; }
+  var eOut = function (x) { return 1 - Math.pow(1 - x, 3); };
+  var eInOut = function (x) { return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+  var eBack = function (x) { var c1 = 1.5, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+  function win(t, a, b, fi, fo) { // visibility window with fades
+    return Math.min(eOut(seg(t, a, a + fi)), 1 - eInOut(seg(t, b - fo, b)));
+  }
+  function put(el, o, x, y, s, r) {
+    el.style.opacity = o;
+    el.style.transform = 'translate3d(' + (x || 0) + 'px,' + (y || 0) + 'px,0) scale(' + (s == null ? 1 : s) + ') rotate(' + (r || 0) + 'deg)';
+    el.style.visibility = o <= 0.001 ? 'hidden' : 'visible';
+  }
+
+  /* ---------- sparkles (deterministic) ---------- */
+  var cv = $('sparkles'), cx = cv.getContext('2d');
+  function rng(seed) { return function () { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; }
+  var R = rng(20261122), P = [];
+  for (var i = 0; i < 90; i++) P.push({ x: R() * 1080, y: R() * 1920, v: 18 + R() * 46, s: 2 + R() * 6, f: 1 + R() * 2.4, ph: R() * 6.28, d: R() * 30 - 15, star: R() < .32 });
+  var B = [];
+  for (i = 0; i < 46; i++) B.push({ a: R() * 6.28, sp: 260 + R() * 520, s: 3 + R() * 7, life: .9 + R() * .9, delay: R() * .35 });
+  function star(x, y, r, a) {
+    cx.globalAlpha = a;
+    cx.beginPath();
+    cx.moveTo(x, y - r * 2.2); cx.quadraticCurveTo(x, y, x + r * 2.2, y);
+    cx.quadraticCurveTo(x, y, x, y + r * 2.2); cx.quadraticCurveTo(x, y, x - r * 2.2, y);
+    cx.quadraticCurveTo(x, y, x, y - r * 2.2); cx.fill();
+  }
+  function drawSparkles(t) {
+    cx.clearRect(0, 0, 1080, 1920);
+    var boost = 1 + 0.6 * Math.max(0, 1 - Math.abs(t - 1.6) / 1.6);
+    for (var i = 0; i < P.length; i++) {
+      var p = P[i];
+      var y = ((p.y - p.v * t) % 1960 + 1960) % 1960 - 20;
+      var x = p.x + Math.sin(t * .6 + p.ph) * p.d;
+      var a = (.25 + .75 * Math.abs(Math.sin(t * p.f + p.ph))) * .75 * Math.min(1, boost);
+      cx.fillStyle = i % 3 ? '#f0dcae' : '#fff6dc';
+      if (p.star) star(x, y, p.s * .9, a);
+      else { cx.globalAlpha = a * .8; cx.beginPath(); cx.arc(x, y, p.s * .45, 0, 6.283); cx.fill(); }
+    }
+    // final burst behind the CTA
+    var bt = t - 12.55;
+    if (bt > 0) {
+      for (i = 0; i < B.length; i++) {
+        var b = B[i], k = (bt - b.delay) / b.life;
+        if (k <= 0 || k >= 1) continue;
+        var d = eOut(k) * b.sp;
+        cx.fillStyle = i % 2 ? '#f6e7c4' : '#e6cf9a';
+        star(540 + Math.cos(b.a) * d * 1.15, 1005 + Math.sin(b.a) * d * .75, b.s * (1 - k * .5), (1 - k) * .95);
+      }
+    }
+    cx.globalAlpha = 1;
+  }
+
+  /* ---------- elements ---------- */
+  var el = {};
+  ['s1','s1-mark','s1-ring','s1-ring2','s1-disc','s1-w1','s1-w2','s1-line','s1-en','s1-tag',
+   's2','s2-eb','s2-title','s2-frame','s2-a','s2-b','s2-c','s2-c1','s2-c2','s2-c3','s2-dots','s2-badge',
+   's3','s3-title','s3-sub','s3-pill','s3-count','s3-pill-heart','card0','card1','card2','card3','h0','h1','h2','h3','s3-ripple','s3-finger','s3-toast',
+   's4','s4-mark','s4-title','s4-glow','s4-cta','s4-shine','s4-contact','s4-wa','s4-web','s4-ig','s4-foot'].forEach(function (id) { el[id] = $(id); });
+  var bars = document.querySelectorAll('#progress i');
+  var dots = el['s2-dots'].children;
+
+  // heart centres (stage coords) for the "finger"
+  var cards = [[560, 600], [80, 600], [560, 1190], [80, 1190]];
+  function heartPos(i) { return [cards[i][0] + 64, cards[i][1] + 64]; }
+  var TAPS = [{ c: 0, t: 9.25 }, { c: 3, t: 10.05 }, { c: 1, t: 10.85 }];
+  var pillPos = [540, 501];
+
+  /* ---------- the timeline ---------- */
+  function render(t) {
+    t = clamp(t, 0, DUR);
+    drawSparkles(t);
+
+    // progress bar
+    var cuts = [0, 4, 8, 12, 15];
+    for (var i = 0; i < 4; i++) bars[i].style.width = (seg(t, cuts[i], cuts[i + 1]) * 100) + '%';
+
+    /* ----- scene 1 : 0 – 4 ----- */
+    var a1 = 1 - eInOut(seg(t, 3.6, 4.15));
+    var z1 = 1 + .05 * seg(t, 0, 4.15);
+    put(el.s1, a1, 0, -60 * eInOut(seg(t, 3.6, 4.15)), z1);
+    el['s1-ring'].setAttribute('stroke-dashoffset', 905 * (1 - eInOut(seg(t, .15, 1.4))));
+    el['s1-ring2'].setAttribute('stroke-dashoffset', 830 * (1 - eInOut(seg(t, .35, 1.6))));
+    var pd = seg(t, .55, 1.25);
+    put(el['s1-disc'], eOut(pd), 0, 0, .55 + .45 * eBack(pd), (1 - eOut(pd)) * -30);
+    var p1 = seg(t, 1.0, 1.6);
+    put(el['s1-w1'], eOut(p1), 0, 40 * (1 - eOut(p1)));
+    var p2 = seg(t, 1.25, 2.0);
+    put(el['s1-w2'], eOut(p2), 0, 60 * (1 - eOut(p2)), .92 + .08 * eOut(p2));
+    el['s1-w2'].style.backgroundPosition = (100 - 100 * eInOut(seg(t, 1.6, 3.4))) + '% 0';
+    var pl = eInOut(seg(t, 1.9, 2.6));
+    el['s1-line'].style.opacity = pl; el['s1-line'].style.transform = 'scaleX(' + pl + ')';
+    var pe = seg(t, 2.15, 2.8);
+    put(el['s1-en'], eOut(pe), 0, 24 * (1 - eOut(pe)));
+    el['s1-en'].style.letterSpacing = (.6 - .28 * eOut(pe)) + 'em';
+    var pt = seg(t, 2.5, 3.15);
+    put(el['s1-tag'], eOut(pt), 0, 24 * (1 - eOut(pt)));
+
+    /* ----- scene 2 : 4 – 8 ----- */
+    var a2 = win(t, 3.85, 8.15, .45, .5);
+    put(el.s2, a2, 0, 40 * (1 - eOut(seg(t, 3.85, 4.4))));
+    var pe2 = seg(t, 4.0, 4.5), pt2 = seg(t, 4.15, 4.75);
+    put(el['s2-eb'], eOut(pe2), 0, 20 * (1 - eOut(pe2)));
+    put(el['s2-title'], eOut(pt2), 0, 30 * (1 - eOut(pt2)));
+    el['s2-title'].style.backgroundPosition = (100 - 100 * seg(t, 4.4, 7.6)) + '% 0';
+    var pf = seg(t, 3.95, 4.7);
+    put(el['s2-frame'], eOut(pf), 0, 80 * (1 - eOut(pf)), .94 + .06 * eOut(pf));
+    var slides = [[3.85, 5.45], [5.25, 6.85], [6.65, 8.3]];
+    var imgs = [el['s2-a'], el['s2-b'], el['s2-c']], chips = [el['s2-c1'], el['s2-c2'], el['s2-c3']];
+    for (i = 0; i < 3; i++) {
+      var s = slides[i], o = win(t, s[0], s[1], i ? .35 : .01, .35);
+      var k = seg(t, s[0], s[1]);
+      put(imgs[i], o, (i % 2 ? -1 : 1) * 24 * k, -18 * k, 1.16 - .12 * k);
+      var co = win(t, s[0] + .3, s[1] - .05, .35, .3);
+      put(chips[i], co, 0, 26 * (1 - eOut(seg(t, s[0] + .3, s[0] + .75))));
+      var on = t >= s[0] + .2 && t < s[1] - .1;
+      dots[2 - i].style.background = on ? '#e6cf9a' : 'rgba(251,247,241,.25)';
+      dots[2 - i].style.transform = on ? 'scale(1.35)' : 'none';
+    }
+    put(el['s2-dots'], eOut(seg(t, 4.4, 4.9)));
+    var pb = seg(t, 4.6, 5.2);
+    put(el['s2-badge'], eOut(pb), 0, 20 * (1 - eOut(pb)));
+
+    /* ----- scene 3 : 8 – 12 ----- */
+    var a3 = win(t, 7.85, 12.15, .45, .5);
+    put(el.s3, a3);
+    var p3t = seg(t, 8.0, 8.55), p3s = seg(t, 8.15, 8.7), p3p = seg(t, 8.3, 8.85);
+    put(el['s3-title'], eOut(p3t), 0, 30 * (1 - eOut(p3t)));
+    el['s3-title'].style.backgroundPosition = (100 - 100 * seg(t, 8.4, 11.8)) + '% 0';
+    put(el['s3-sub'], eOut(p3s), 0, 20 * (1 - eOut(p3s)));
+    for (i = 0; i < 4; i++) {
+      var pc = seg(t, 8.2 + i * .14, 8.75 + i * .14);
+      put(el['card' + i], eOut(pc), 0, 90 * (1 - eOut(pc)), .9 + .1 * eBack(pc));
+    }
+    var count = 0;
+    for (i = 0; i < 4; i++) { el['h' + i].classList.remove('on'); put(el['h' + i], 1); }
+    TAPS.forEach(function (tp) {
+      if (t >= tp.t + .05) {
+        count++;
+        var h = el['h' + tp.c]; h.classList.add('on');
+        var pop = seg(t, tp.t + .05, tp.t + .5);
+        h.style.transform = 'scale(' + (1 + .45 * Math.sin(pop * Math.PI) * (1 - pop * .4)) + ')';
+      }
+    });
+    var lastTap = TAPS.filter(function (tp) { return t >= tp.t + .05; }).pop();
+    var bump = lastTap ? Math.sin(seg(t, lastTap.t + .1, lastTap.t + .55) * Math.PI) : 0;
+    el['s3-count'].textContent = count;
+    el['s3-count'].style.transform = 'scale(' + (1 + .35 * bump) + ')';
+    el['s3-pill-heart'].setAttribute('fill', count ? '#e6cf9a' : 'none');
+    var pillTap = Math.sin(seg(t, 11.55, 11.95) * Math.PI);
+    put(el['s3-pill'], eOut(p3p), 0, 20 * (1 - eOut(p3p)), 1 + .06 * pillTap);
+    el['s3-pill'].style.boxShadow = '0 0 ' + (60 * pillTap) + 'px rgba(240,220,174,' + (.6 * pillTap) + ')';
+
+    // finger path: enter → tap 1 → tap 2 → tap 3 → open favourites
+    var path = [
+      { t: 8.85, p: [620, 1980] },
+      { t: 9.2, p: heartPos(0) },
+      { t: 9.65, p: heartPos(0) },
+      { t: 10.0, p: heartPos(3) },
+      { t: 10.45, p: heartPos(3) },
+      { t: 10.8, p: heartPos(1) },
+      { t: 11.15, p: heartPos(1) },
+      { t: 11.5, p: pillPos },
+      { t: 12.2, p: pillPos }
+    ];
+    var fx = path[0].p[0], fy = path[0].p[1];
+    for (i = 0; i < path.length - 1; i++) {
+      if (t >= path[i].t && t <= path[i + 1].t) {
+        var kk = eInOut(seg(t, path[i].t, path[i + 1].t));
+        fx = lerp(path[i].p[0], path[i + 1].p[0], kk); fy = lerp(path[i].p[1], path[i + 1].p[1], kk);
+      } else if (t > path[i + 1].t) { fx = path[i + 1].p[0]; fy = path[i + 1].p[1]; }
+    }
+    var press = 0, rip = -1;
+    TAPS.concat([{ t: 11.55 }]).forEach(function (tp) {
+      var d = t - tp.t;
+      if (d > -.12 && d < .12) press = Math.max(press, 1 - Math.abs(d) / .12);
+      if (d >= 0 && d < .5) rip = d / .5;
+    });
+    var fo = win(t, 8.85, 11.95, .25, .3);
+    el['s3-finger'].style.left = fx + 'px'; el['s3-finger'].style.top = fy + 'px';
+    put(el['s3-finger'], fo, 0, 0, 1 - .2 * press);
+    el['s3-ripple'].style.left = fx + 'px'; el['s3-ripple'].style.top = fy + 'px';
+    put(el['s3-ripple'], rip >= 0 ? (1 - rip) * .9 * fo : 0, 0, 0, 1 + 1.4 * eOut(Math.max(rip, 0)));
+    var toastO = 0;
+    TAPS.forEach(function (tp) { toastO = Math.max(toastO, win(t, tp.t + .08, tp.t + .75, .15, .2)); });
+    put(el['s3-toast'], toastO, 0, 30 * (1 - toastO));
+
+    /* ----- scene 4 : 12 – 15 ----- */
+    var a4 = eOut(seg(t, 11.85, 12.35));
+    put(el.s4, a4);
+    var pm = seg(t, 12.0, 12.55);
+    put(el['s4-mark'], eOut(pm), 0, -20 * (1 - eOut(pm)), .7 + .3 * eBack(pm));
+    var p4t = seg(t, 12.1, 12.75);
+    put(el['s4-title'], eOut(p4t), 0, 40 * (1 - eOut(p4t)));
+    el['s4-title'].style.backgroundPosition = (100 - 100 * seg(t, 12.3, 14.8)) + '% 0';
+    var pcta = seg(t, 12.35, 13.0);
+    var pulse = t > 13 ? .5 + .5 * Math.sin((t - 13) * 4.2) : 0;
+    put(el['s4-cta'], eOut(pcta), 0, 0, (.55 + .45 * eBack(pcta)) * (1 + .025 * pulse));
+    el['s4-cta'].style.boxShadow = '0 0 0 ' + (10 + 10 * pulse) + 'px rgba(230,207,154,' + (.12 + .1 * pulse) + '), 0 40px 90px -30px rgba(212,179,115,.7)';
+    put(el['s4-glow'], eOut(pcta) * (.55 + .45 * pulse));
+    var sh = ((t - 12.9) % 1.3) / 1.3;
+    el['s4-shine'].style.left = (t > 12.9 ? lerp(-260, 900, eInOut(clamp(sh * 1.4, 0, 1))) : -300) + 'px';
+    [['s4-wa', 12.75], ['s4-web', 12.9], ['s4-ig', 13.05]].forEach(function (c) {
+      var pp = seg(t, c[1], c[1] + .5);
+      put(el[c[0]], eOut(pp), 0, 24 * (1 - eOut(pp)));
+    });
+    put(el['s4-contact'], 1);
+    var pft = seg(t, 13.3, 13.9);
+    put(el['s4-foot'], eOut(pft) * .9);
+
+    $('time').textContent = t.toFixed(1) + 's';
+  }
+
+  /* ---------- fit stage to screen ---------- */
+  function fit() {
+    if (EXPORT) return;
+    var s = Math.min(innerWidth / 1080, innerHeight / 1920);
+    stage.style.transform = 'scale(' + s + ') translate(-50%, -50%)';
+  }
+  addEventListener('resize', fit); fit();
+
+  /* ---------- playback ---------- */
+  var t = 0, playing = false, last = 0, raf = 0;
+  function frame(now) {
+    if (!playing) return;
+    t += Math.min((now - last) / 1000, .1); last = now;
+    if (t >= DUR) {
+      if (loop) t = t % DUR; else { t = DUR; playing = false; updateBtn(); }
+    }
+    render(t);
+    if (playing) raf = requestAnimationFrame(frame);
+  }
+  function play() { if (playing) return; if (t >= DUR) t = 0; playing = true; last = performance.now(); raf = requestAnimationFrame(frame); updateBtn(); }
+  function pause() { playing = false; cancelAnimationFrame(raf); updateBtn(); }
+  function restart() { t = 0; render(0); pause(); play(); }
+  function updateBtn() { $('btn-play').textContent = playing ? '❚❚ Pause' : '▶ Play'; }
+
+  $('btn-play').onclick = function () { playing ? pause() : play(); };
+  $('btn-restart').onclick = restart;
+  $('btn-loop').onclick = function () { loop = !loop; this.textContent = 'Loop: ' + (loop ? 'on' : 'off'); };
+  $('btn-bar').onclick = function () { var off = document.body.classList.toggle('no-bar'); this.textContent = 'Bar: ' + (off ? 'off' : 'on'); };
+  $('btn-clean').onclick = function () { goClean(); };
+  function goClean() {
+    document.documentElement.classList.add('clean');
+    var r = document.documentElement.requestFullscreen && document.documentElement.requestFullscreen();
+    if (r && r.catch) r.catch(function () {});
+    t = 0; render(0); pause();
+    setTimeout(play, 1200);   // a short pause so recording starts on a clean first frame
+  }
+  addEventListener('keydown', function (e) {
+    if (e.code === 'Space') { e.preventDefault(); playing ? pause() : play(); }
+    if (e.key === 'r' || e.key === 'R') restart();
+    if (e.key === 'f' || e.key === 'F') { var r = document.documentElement.requestFullscreen && document.documentElement.requestFullscreen(); if (r && r.catch) r.catch(function () {}); }
+    if (e.key === 'h' || e.key === 'H') document.documentElement.classList.toggle('ui-hidden');
+    if (e.key === 'Escape') document.documentElement.classList.remove('clean');
+  });
+  // tap anywhere on the stage to start over (handy on phones)
+  stage.addEventListener('click', function () { if (!EXPORT) restart(); });
+  // auto-hide controls when idle
+  var idle = 0;
+  function wake() { document.documentElement.classList.remove('ui-hidden'); clearTimeout(idle); idle = setTimeout(function () { if (playing) document.documentElement.classList.add('ui-hidden'); }, 2500); }
+  addEventListener('mousemove', wake); addEventListener('touchstart', wake, { passive: true });
+
+  /* ---------- frame-by-frame export hook ---------- */
+  window.renderAt = function (sec) { render(sec); };
+
+  render(0);
+  var ready = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+  ready.then(function () {
+    render(0);
+    window.reelReady = true;
+    if (EXPORT) return;
+    setTimeout(play, RECORD ? 2000 : 500);
+    wake();
+  });
+})();
+</script>
+</body>
+</html>
