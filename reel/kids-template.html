@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Kids Christmas Reel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&family=Amiri:wght@400;700&family=Tajawal:wght@500;700;800&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   Karolin Sweets — kids' Christmas activities reel
+   18s, 1080×1920, four beats of 4.5s each.
+   One time value (t) drives every frame.
+   ========================================================= */
+:root {
+  --emoji: "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji";
+  --display: "Aref Ruqaa", "Amiri", var(--emoji), serif;
+  --ar: "Amiri", var(--emoji), serif;
+  --body: "Tajawal", var(--emoji), sans-serif;
+  --cream: #fff8ee;
+  --gold-300: #f0d9a0;
+  --gold-grad: linear-gradient(135deg, #f7e3b3 0%, #dcb56a 45%, #b8893f 70%, #f7e3b3 100%);
+  --foil: linear-gradient(100deg, #c08f43 0%, #f0d9a0 30%, #fff7e0 45%, #f5dfa8 55%, #c99a4e 75%, #f0d9a0 100%);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: #070403; overflow: hidden; }
+body { font-family: var(--body); color: var(--cream); -webkit-font-smoothing: antialiased; }
+.stage {
+  position: absolute; left: 50%; top: 50%; width: 1080px; height: 1920px;
+  transform-origin: 0 0; overflow: hidden; contain: strict;
+  background:
+    radial-gradient(70% 38% at 50% 30%, rgba(255, 196, 120, .28), transparent 70%),
+    radial-gradient(80% 40% at 50% 102%, rgba(30, 74, 52, .9), transparent 70%),
+    linear-gradient(180deg, #4a0d18 0%, #6a1422 34%, #3b0f12 66%, #1a0f0b 100%);
+}
+.export .stage { left: 0; top: 0; transform: none !important; }
+.abs, .layer { position: absolute; will-change: transform, opacity; }
+.layer { inset: 0; }
+canvas.fx { position: absolute; inset: 0; width: 1080px; height: 1920px; pointer-events: none; }
+.vignette { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(120% 75% at 50% 50%, transparent 58%, rgba(0, 0, 0, .5) 100%); }
+svg { overflow: visible; }
+
+/* progress */
+.progress { position: absolute; left: 60px; right: 60px; top: 64px; display: flex; gap: 12px; direction: rtl; z-index: 20; }
+.progress span { flex: 1; height: 7px; border-radius: 7px; background: rgba(255, 248, 238, .22); overflow: hidden; }
+.progress i { display: block; height: 100%; width: 0; background: var(--gold-grad); border-radius: 7px; box-shadow: 0 0 12px rgba(240, 217, 160, .7); }
+.no-bar .progress { display: none; }
+
+/* text panel */
+.panel {
+  left: 60px; right: 60px; padding: 40px 40px 44px; border-radius: 48px; text-align: center;
+  background: linear-gradient(180deg, rgba(26, 10, 8, .66), rgba(26, 10, 8, .8));
+  border: 3px solid rgba(240, 217, 160, .55);
+  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, .9), inset 0 0 0 10px rgba(240, 217, 160, .06);
+}
+.panel::before, .panel::after { content: "✦"; position: absolute; top: -26px; font-size: 40px; color: var(--gold-300); }
+.panel::before { right: 70px; } .panel::after { left: 70px; }
+.panel p { margin: 0; will-change: transform, opacity; }
+.l { font: 700 92px/1.35 var(--ar); color: var(--cream); }
+.l.sm { font-size: 80px; }
+.gold { background: var(--foil); background-size: 260% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; }
+.emo { font-family: var(--emoji); font-size: .82em; }
+.brand { margin-top: 16px; font: 700 46px/1.2 var(--display); color: var(--gold-300); letter-spacing: .02em; }
+
+/* lights */
+.lights { left: 0; right: 0; top: 130px; height: 160px; }
+.lights svg { width: 100%; height: 100%; }
+
+/* characters */
+.santa { width: 400px; }
+.snowman { width: 360px; }
+.gift { width: 170px; }
+.gift.big { width: 220px; }
+.glow { width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 214, 150, .4), transparent); }
+
+/* scene 2 photos */
+.main-photo {
+  left: 120px; top: 300px; width: 840px; height: 560px; border-radius: 44px; overflow: hidden; background: #2a140f;
+  box-shadow: 0 0 0 4px var(--gold-300), 0 0 0 14px rgba(240, 217, 160, .12), 0 40px 90px -30px rgba(0, 0, 0, .95);
+}
+.main-photo img, .mini img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; will-change: transform; }
+.mini { top: 920px; width: 280px; height: 280px; border-radius: 34px; overflow: hidden; background: #2a140f; box-shadow: 0 0 0 3px var(--gold-300), 0 24px 60px -20px rgba(0, 0, 0, .9); }
+.peek { left: 820px; top: 640px; width: 220px; height: 230px; overflow: hidden; }
+.peek .in { position: absolute; left: 0; top: 0; width: 220px; }
+
+/* scene 3 calendar */
+.cal { left: 50%; top: 300px; width: 560px; height: 620px; margin-left: -280px; border-radius: 46px; overflow: hidden; background: #fff8ee; box-shadow: 0 0 0 4px var(--gold-300), 0 50px 110px -30px rgba(0, 0, 0, .95); }
+.cal-head { height: 150px; background: linear-gradient(135deg, #b3283f, #6a1422); display: grid; place-items: center; font: 700 62px/1 var(--ar); color: #fff8ee; position: relative; padding-top: 10px; }
+.cal-rings { position: absolute; top: -22px; left: 0; right: 0; display: flex; justify-content: center; gap: 220px; }
+.cal-rings i { width: 34px; height: 64px; border-radius: 20px; background: var(--gold-grad); box-shadow: 0 4px 10px rgba(0, 0, 0, .4); }
+.cal-num { position: absolute; left: 0; right: 0; top: 215px; text-align: center; font: 700 196px/1 "Amiri", serif; color: #6a1422; direction: ltr; }
+.cal-sub { position: absolute; left: 0; right: 0; bottom: 48px; text-align: center; font: 700 52px/1 var(--ar); color: #8a5a2b; }
+.cal-ring { position: absolute; left: 50%; top: 150px; width: 470px; height: 330px; margin-left: -235px; }
+.hourglass { left: 800px; top: 650px; width: 170px; }
+.date-chip { display: inline-block; padding: 0 22px 8px; border-radius: 26px; background: var(--gold-grad); color: #4a0d18; direction: ltr; unicode-bidi: isolate; }
+
+/* scene 4 CTA */
+.cta { left: 140px; top: 1260px; width: 800px; height: 170px; border-radius: 170px; display: flex; align-items: center; justify-content: center; gap: 22px; overflow: hidden; background: var(--gold-grad); font: 800 64px/1 var(--body); color: #3b0f12; }
+.cta svg { width: 72px; height: 72px; flex: none; }
+.cta .shine { position: absolute; top: -30%; bottom: -30%; width: 170px; left: -250px; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .8), transparent); transform: skewX(-18deg); }
+.contact { left: 0; right: 0; top: 1465px; text-align: center; font: 700 44px/1.3 var(--body); color: var(--gold-300); direction: ltr; }
+
+/* UI */
+.ui { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 50; display: flex; gap: 8px; align-items: center; direction: ltr; padding: 8px; border-radius: 999px; background: rgba(26, 10, 8, .86); border: 1px solid rgba(240, 217, 160, .35); font: 600 14px/1 var(--body); transition: opacity .4s; }
+.ui button { height: 40px; min-width: 40px; padding: 0 14px; border-radius: 40px; border: 0; cursor: pointer; background: transparent; color: var(--cream); font: inherit; }
+.ui button:hover { background: rgba(240, 217, 160, .15); }
+.ui button.primary { background: var(--gold-grad); color: #3b0f12; }
+.ui input[type=range] { width: 140px; accent-color: #dcb56a; }
+.ui .time { color: var(--gold-300); min-width: 48px; text-align: center; font-variant-numeric: tabular-nums; }
+.ui-hidden .ui { opacity: 0; pointer-events: none; }
+.clean, .clean * { cursor: none !important; }
+.clean .ui, .export .ui { display: none; }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <canvas class="fx" id="fx" width="1080" height="1920"></canvas>
+
+  <!-- ============ 1 · opening hook ============ -->
+  <div class="layer" id="s1">
+    <div class="abs lights" id="lights"><svg viewBox="0 0 1080 160" id="lights-svg"><path d="M-20 24 Q 270 160 540 44 T 1100 24" fill="none" stroke="#1e4a34" stroke-width="5"/></svg></div>
+    <div class="abs glow" id="s1-glow" style="left:190px; top:220px"></div>
+    <div class="abs santa" id="s1-santa" style="left:600px; top:330px">{{SANTA_A}}</div>
+    <div class="abs snowman" id="s1-snow" style="left:90px; top:330px">{{SNOW_A}}</div>
+    <div class="abs gift big" id="s1-g1" style="left:430px; top:640px">{{GIFT_RED}}</div>
+    <div class="abs gift" id="s1-g2" style="left:300px; top:700px">{{GIFT_GREEN}}</div>
+    <div class="abs gift" id="s1-g3" style="left:620px; top:705px">{{GIFT_GOLD}}</div>
+    <div class="abs panel" id="t1" style="top:930px">
+      <p class="l">فعاليات وورشات</p>
+      <p class="l">عيد الميلاد للأطفال</p>
+      <p class="l"><span class="gold">مع كارولين</span> <span class="emo">✨🎄</span></p>
+      <p class="brand">حلويات كارولين</p>
+    </div>
+  </div>
+
+  <!-- ============ 2 · the kids' experience ============ -->
+  <div class="layer" id="s2">
+    <div class="abs main-photo" id="s2-main"><img id="s2-main-img" src="{{IMG_MAIN}}" alt=""></div>
+    <div class="abs peek" id="s2-peek"><div class="in" id="s2-peek-in">{{SNOW_B}}</div></div>
+    <div class="abs mini" id="s2-k1" style="left:700px"><img src="{{IMG_K1}}" alt=""></div>
+    <div class="abs mini" id="s2-k2" style="left:400px"><img src="{{IMG_K2}}" alt=""></div>
+    <div class="abs mini" id="s2-k3" style="left:100px"><img src="{{IMG_K3}}" alt=""></div>
+    <div class="abs panel" id="t2" style="top:1260px">
+      <p class="l sm">تزيين حلويات الميلاد،</p>
+      <p class="l sm">إبداع، <span class="gold">وفرحة للأطفال</span> <span class="emo">🍪🎁</span></p>
+    </div>
+  </div>
+
+  <!-- ============ 3 · registration deadline ============ -->
+  <div class="layer" id="s3">
+    <div class="abs glow" id="s3-glow" style="left:190px; top:260px"></div>
+    <div class="abs cal" id="s3-cal">
+      <div class="cal-head">تشرين الثاني<div class="cal-rings"><i></i><i></i></div></div>
+      <div class="cal-num" id="s3-num">30.11</div>
+      <svg class="cal-ring" viewBox="0 0 470 330"><ellipse id="s3-circle" cx="235" cy="165" rx="222" ry="150" fill="none" stroke="#c99a4e" stroke-width="8" stroke-linecap="round" stroke-dasharray="1200" stroke-dashoffset="1200" transform="rotate(-8 235 165)"/></svg>
+      <div class="cal-sub">آخر موعد للتسجيل</div>
+    </div>
+    <div class="abs hourglass" id="s3-hg">
+      <svg viewBox="0 0 100 160" aria-hidden="true">
+        <defs><linearGradient id="hgg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7e3b3"/><stop offset=".5" stop-color="#c99a4e"/><stop offset="1" stop-color="#f7e3b3"/></linearGradient></defs>
+        <rect x="6" y="4" width="88" height="14" rx="5" fill="url(#hgg)"/><rect x="6" y="142" width="88" height="14" rx="5" fill="url(#hgg)"/>
+        <path d="M18 18 C18 60 46 66 46 80 C46 94 18 100 18 142 H82 C82 100 54 94 54 80 C54 66 82 60 82 18 Z" fill="rgba(255,248,238,.18)" stroke="#f0d9a0" stroke-width="4"/>
+        <path id="hg-top" d="M26 30 H74 C72 56 52 66 50 76 C48 66 28 56 26 30 Z" fill="#f0c36a"/>
+        <path id="hg-bot" d="M26 136 H74 C72 120 56 112 50 110 C44 112 28 120 26 136 Z" fill="#f0c36a"/>
+        <rect id="hg-stream" x="48.5" y="78" width="3" height="56" fill="#f0c36a"/>
+      </svg>
+    </div>
+    <div class="abs gift" id="s3-g1" style="left:90px; top:720px">{{GIFT_GREEN2}}</div>
+    <div class="abs panel" id="t3" style="top:1060px">
+      <p class="l">التسجيل مفتوح</p>
+      <p class="l">حتى <span class="date-chip">30.11</span> فقط! <span class="emo">⏳</span></p>
+    </div>
+  </div>
+
+  <!-- ============ 4 · call to action ============ -->
+  <div class="layer" id="s4">
+    <div class="abs glow" id="s4-glow" style="left:190px; top:170px"></div>
+    <div class="abs santa" id="s4-santa" style="left:610px; top:250px; width:360px">{{SANTA_B}}</div>
+    <div class="abs snowman" id="s4-snow" style="left:110px; top:250px; width:330px">{{SNOW_C}}</div>
+    <div class="abs gift" id="s4-g1" style="left:450px; top:520px; width:180px">{{GIFT_RED2}}</div>
+    <div class="abs panel" id="t4" style="top:860px">
+      <p class="l">احجزوا مكان أطفالكم الآن</p>
+      <p class="l"><span class="gold">قبل اكتمال العدد</span> <span class="emo">📲</span></p>
+    </div>
+    <div class="abs cta" id="s4-cta">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#3b0f12" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3z"/></svg>
+      <span>احجزوا عبر واتساب</span><i class="shine" id="s4-shine"></i>
+    </div>
+    <div class="abs contact" id="s4-contact">052-795-8983 · karolinsweets.com</div>
+  </div>
+
+  <div class="vignette"></div>
+  <div class="progress" id="progress"><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
+</div>
+
+<div class="ui" id="ui">
+  <button type="button" class="primary" id="btn-play">❚❚ Pause</button>
+  <button type="button" id="btn-restart">↺</button>
+  <input type="range" id="seek" min="0" max="18" step="0.05" value="0" aria-label="Timeline">
+  <span class="time" id="time">0.0s</span>
+  <button type="button" id="btn-loop">Loop: on</button>
+  <button type="button" id="btn-clean">Clean ⤢</button>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var DUR = 18, SC = [[0, 4.5], [4.5, 9], [9, 13.5], [13.5, 18]];
+  var q = new URLSearchParams(location.search);
+  var EXPORT = q.has('export'), RECORD = q.has('record'), CLEAN = RECORD || q.has('clean');
+  var loop = !(RECORD || q.has('once'));
+  var root = document.documentElement;
+  if (EXPORT) root.classList.add('export');
+  if (CLEAN) root.classList.add('clean');
+  if (q.get('bar') === '0') document.body.classList.add('no-bar');
+  var $ = function (id) { return document.getElementById(id); };
+  var stage = $('stage');
+
+  function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
+  function seg(t, a, b) { return clamp((t - a) / (b - a), 0, 1); }
+  function lerp(a, b, p) { return a + (b - a) * p; }
+  var eOut = function (x) { return 1 - Math.pow(1 - x, 3); };
+  var eInOut = function (x) { return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+  var eBack = function (x) { var c1 = 1.6, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+  function put(el, o, x, y, s, r) {
+    el.style.opacity = o; el.style.visibility = o <= .001 ? 'hidden' : 'visible';
+    el.style.transform = 'translate3d(' + (x || 0) + 'px,' + (y || 0) + 'px,0) scale(' + (s == null ? 1 : s) + ') rotate(' + (r || 0) + 'deg)';
+  }
+  function sceneAlpha(t, i) {
+    var a = SC[i][0], b = SC[i][1];
+    var inA = i === 0 ? 1 : eOut(seg(t, a - .05, a + .3));
+    var outA = i === 3 ? 1 : 1 - eInOut(seg(t, b - .3, b + .02));
+    return Math.min(inA, outA);
+  }
+  // text: every line is in within ~0.5s of the beat starting and stays until it ends
+  function textIn(t, i, block) {
+    var a = SC[i][0] + (i === 0 ? .1 : .05);
+    var lines = block.querySelectorAll('p');
+    for (var k = 0; k < lines.length; k++) {
+      var p = seg(t, a + k * .08, a + k * .08 + .35);
+      put(lines[k], eOut(p), 0, 28 * (1 - eOut(p)));
+    }
+    var pb = seg(t, a - .05, a + .35);
+    put(block, eOut(pb), 0, 40 * (1 - eOut(pb)), .96 + .04 * eOut(pb));
+    var g = block.querySelectorAll('.gold');
+    for (k = 0; k < g.length; k++) g[k].style.backgroundPosition = (100 - 100 * seg(t, a + .3, SC[i][1])) + '% 0';
+  }
+
+  /* ---------- particles ---------- */
+  var cv = $('fx'), cx = cv.getContext('2d');
+  function rng(s) { return function () { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; }; }
+  var R = rng(3011), snow = [], spark = [], burst = [], i;
+  for (i = 0; i < 130; i++) snow.push({ x: R() * 1080, y: R() * 1920, v: 50 + R() * 90, r: 2 + R() * 6, sw: 10 + R() * 30, f: .4 + R() * .8, ph: R() * 6.3, a: .4 + R() * .5 });
+  for (i = 0; i < 55; i++) spark.push({ x: R() * 1080, y: R() * 1920, s: 3 + R() * 7, f: 1 + R() * 2.5, ph: R() * 6.3, d: 6 + R() * 18 });
+  var COLS = ['#f0d9a0', '#fff8ee', '#e0475e', '#3f9a6c', '#f7e3b3'];
+  for (i = 0; i < 80; i++) burst.push({ a: R() * 6.283, sp: 300 + R() * 650, s: 4 + R() * 8, life: 1 + R() * 1.2, dl: R() * .3, c: COLS[(R() * COLS.length) | 0] });
+  function star(x, y, r, a, col) {
+    cx.globalAlpha = a; cx.fillStyle = col; cx.beginPath();
+    cx.moveTo(x, y - r * 2.2); cx.quadraticCurveTo(x, y, x + r * 2.2, y);
+    cx.quadraticCurveTo(x, y, x, y + r * 2.2); cx.quadraticCurveTo(x, y, x - r * 2.2, y);
+    cx.quadraticCurveTo(x, y, x, y - r * 2.2); cx.fill();
+  }
+  function burstAt(t, t0, x0, y0) {
+    var bt = t - t0; if (bt <= 0) return;
+    for (var k = 0; k < burst.length; k++) {
+      var p = burst[k], kk = (bt - p.dl) / p.life;
+      if (kk <= 0 || kk >= 1) continue;
+      var d = eOut(kk) * p.sp;
+      star(x0 + Math.cos(p.a) * d * 1.1, y0 + Math.sin(p.a) * d * .8 + kk * kk * 140, p.s * (1 - kk * .5), (1 - kk) * .95, p.c);
+    }
+  }
+  function drawFx(t) {
+    cx.clearRect(0, 0, 1080, 1920);
+    var k, p;
+    for (k = 0; k < spark.length; k++) {
+      p = spark[k];
+      star(p.x + Math.sin(t * .5 + p.ph) * p.d, (p.y - t * 14 + 1920) % 1920, p.s * .8, (.2 + .8 * Math.abs(Math.sin(t * p.f + p.ph))) * .7, k % 3 ? '#f0d9a0' : '#fff7e0');
+    }
+    for (k = 0; k < snow.length; k++) {
+      p = snow[k];
+      var y = ((p.y + p.v * t) % 1980) - 30, x = p.x + Math.sin(t * p.f + p.ph) * p.sw;
+      cx.globalAlpha = p.a; cx.fillStyle = '#ffffff'; cx.beginPath(); cx.arc(x, y, p.r * .6, 0, 6.283); cx.fill();
+    }
+    burstAt(t, 9.6, 540, 520);     // the date "stamps" onto the calendar
+    burstAt(t, 14.3, 540, 1345);   // the booking button appears
+    cx.globalAlpha = 1;
+  }
+
+  /* ---------- lights ---------- */
+  var bulbs = [];
+  (function () {
+    var svg = $('lights-svg'), path = svg.querySelector('path'), L = path.getTotalLength(), cols = ['#ffd27a', '#e0475e', '#7fd6a4', '#fff2c9'];
+    for (var k = 0; k < 16; k++) {
+      var pt = path.getPointAtLength(L * (k + .5) / 16), c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      c.setAttribute('cx', pt.x); c.setAttribute('cy', pt.y + 12); c.setAttribute('r', 13); c.setAttribute('fill', cols[k % 4]);
+      svg.appendChild(c); bulbs.push(c);
+    }
+  })();
+
+  function wave(node, t, speed) {
+    var svg = node.querySelector('svg'); if (!svg) return;
+    var arm = svg.querySelector('.santa__arm'); if (arm) arm.setAttribute('transform', 'rotate(' + (Math.sin(t * speed) * 16) + ' 126 146)');
+    var hat = svg.querySelector('.santa__hat'); if (hat) hat.setAttribute('transform', 'rotate(' + (Math.sin(t * 2.6) * -3) + ' 80 60)');
+    var sarm = svg.querySelector('.snow__arm'); if (sarm) sarm.setAttribute('transform', 'rotate(' + (Math.sin(t * speed * .9 + 1) * 18) + ' 142 118)');
+  }
+  function bob(t, ph) { return Math.sin(t * 2.4 + ph) * 6; }
+
+  var el = {};
+  ['s1', 's2', 's3', 's4', 't1', 't2', 't3', 't4', 'lights', 's1-glow', 's1-santa', 's1-snow', 's1-g1', 's1-g2', 's1-g3',
+   's2-main', 's2-main-img', 's2-peek', 's2-peek-in', 's2-k1', 's2-k2', 's2-k3',
+   's3-glow', 's3-cal', 's3-num', 's3-circle', 's3-hg', 'hg-top', 'hg-bot', 'hg-stream', 's3-g1',
+   's4-glow', 's4-santa', 's4-snow', 's4-g1', 's4-cta', 's4-shine', 's4-contact'].forEach(function (id) { el[id] = $(id); });
+  var bars = document.querySelectorAll('#progress i');
+
+  function render(t) {
+    t = clamp(t, 0, DUR);
+    drawFx(t);
+    for (var b = 0; b < 4; b++) bars[b].style.width = seg(t, SC[b][0], SC[b][1]) * 100 + '%';
+
+    /* 1 · hook */
+    put(el.s1, sceneAlpha(t, 0));
+    textIn(t, 0, el.t1);
+    put(el.lights, eOut(seg(t, 0, .5)));
+    bulbs.forEach(function (c, k) { c.setAttribute('opacity', .45 + .55 * Math.abs(Math.sin(t * 3 + k * .9))); });
+    put(el['s1-glow'], .7 + .3 * Math.sin(t * 2));
+    var ps = seg(t, .05, .75), pw = seg(t, .25, .95);
+    put(el['s1-santa'], eOut(ps), 160 * (1 - eOut(ps)), bob(t, 0), .85 + .15 * eBack(ps), 6 * (1 - eOut(ps)));
+    put(el['s1-snow'], eOut(pw), -160 * (1 - eOut(pw)), bob(t, 1.4), .85 + .15 * eBack(pw), -6 * (1 - eOut(pw)));
+    wave(el['s1-santa'], t, 7); wave(el['s1-snow'], t, 6);
+    [['s1-g1', .5, 0], ['s1-g2', .65, -4], ['s1-g3', .8, 5]].forEach(function (g) {
+      var p = seg(t, g[1], g[1] + .5);
+      put(el[g[0]], eOut(p), 0, -260 * (1 - eOut(p)) + Math.abs(Math.sin(t * 3 + g[1] * 4)) * -6 * eOut(p), .6 + .4 * eBack(p), g[2] + Math.sin(t * 2 + g[1]) * 2);
+    });
+
+    /* 2 · experience */
+    put(el.s2, sceneAlpha(t, 1));
+    textIn(t, 1, el.t2);
+    var pm = seg(t, 4.4, 5.0);
+    put(el['s2-main'], eOut(pm), 0, 70 * (1 - eOut(pm)), .92 + .08 * eOut(pm));
+    el['s2-main-img'].style.transform = 'scale(' + (1.16 - .12 * seg(t, 4.5, 9)) + ')';
+    ['s2-k1', 's2-k2', 's2-k3'].forEach(function (id, k) {
+      var p = seg(t, 4.7 + k * .15, 5.25 + k * .15);
+      put(el[id], eOut(p), 0, 90 * (1 - eOut(p)) + Math.sin(t * 1.6 + k) * 5, .7 + .3 * eBack(p), (k - 1) * -3 * eOut(p));
+      el[id].querySelector('img').style.transform = 'scale(' + (1.12 - .08 * seg(t, 4.5, 9)) + ')';
+    });
+    var up = eOut(seg(t, 5.4, 6.0)) * (1 - eInOut(seg(t, 8.2, 8.8)));
+    put(el['s2-peek'], 1);
+    el['s2-peek-in'].style.transform = 'translate3d(0,' + (240 - 200 * up) + 'px,0) rotate(' + (-8 + 4 * Math.sin(t * 3)) + 'deg)';
+    wave(el['s2-peek-in'], t, 7);
+
+    /* 3 · deadline */
+    put(el.s3, sceneAlpha(t, 2));
+    textIn(t, 2, el.t3);
+    put(el['s3-glow'], .6 + .4 * Math.sin(t * 2.4));
+    var pc = seg(t, 8.95, 9.55);
+    put(el['s3-cal'], eOut(pc), 0, -260 * (1 - eOut(pc)), .9 + .1 * eBack(pc), -4 * (1 - eOut(pc)) + Math.sin(t * 1.5) * .8);
+    var pn = seg(t, 9.45, 9.75);
+    put(el['s3-num'], eOut(pn), 0, 0, 1.6 - .6 * eOut(pn));
+    el['s3-circle'].setAttribute('stroke-dashoffset', 1200 * (1 - eInOut(seg(t, 9.8, 10.7))));
+    var ph = seg(t, 9.3, 9.8);
+    put(el['s3-hg'], eOut(ph), 0, 0, .6 + .4 * eBack(ph), Math.sin(t * 2.2) * 6);
+    var sand = seg(t, 9, 13.5);
+    el['hg-top'].setAttribute('transform', 'translate(50 30) scale(1 ' + (1 - .8 * sand) + ') translate(-50 -30) translate(0 ' + (36 * sand) + ')');
+    el['hg-bot'].setAttribute('transform', 'translate(50 136) scale(1 ' + (.2 + .8 * sand) + ') translate(-50 -136)');
+    el['hg-stream'].setAttribute('opacity', .6 + .4 * Math.sin(t * 20));
+    var pg = seg(t, 9.4, 9.9);
+    put(el['s3-g1'], eOut(pg), 0, -200 * (1 - eOut(pg)) - Math.abs(Math.sin(t * 3)) * 8 * eOut(pg), .6 + .4 * eBack(pg), -6);
+
+    /* 4 · CTA */
+    put(el.s4, sceneAlpha(t, 3));
+    textIn(t, 3, el.t4);
+    put(el['s4-glow'], .7 + .3 * Math.sin(t * 2));
+    var p4s = seg(t, 13.5, 14.1), p4n = seg(t, 13.65, 14.25), p4g = seg(t, 13.9, 14.4);
+    put(el['s4-santa'], eOut(p4s), 140 * (1 - eOut(p4s)), bob(t, .5), .85 + .15 * eBack(p4s));
+    put(el['s4-snow'], eOut(p4n), -140 * (1 - eOut(p4n)), bob(t, 2), .85 + .15 * eBack(p4n));
+    wave(el['s4-santa'], t, 8); wave(el['s4-snow'], t, 7);
+    put(el['s4-g1'], eOut(p4g), 0, -220 * (1 - eOut(p4g)) - Math.abs(Math.sin(t * 3.2)) * 10 * eOut(p4g), .6 + .4 * eBack(p4g));
+    var pcta = seg(t, 14.0, 14.55), pul = t > 14.55 ? .5 + .5 * Math.sin((t - 14.55) * 4.4) : 0;
+    put(el['s4-cta'], eOut(pcta), 0, 0, (.6 + .4 * eBack(pcta)) * (1 + .03 * pul));
+    el['s4-cta'].style.boxShadow = '0 0 0 ' + (10 + 10 * pul) + 'px rgba(240,217,160,' + (.14 + .1 * pul) + '), 0 30px 70px -24px rgba(220,181,106,.8)';
+    el['s4-shine'].style.left = (t > 14.6 ? lerp(-250, 1000, eInOut(clamp(((t - 14.6) % 1.4) / .9, 0, 1))) : -250) + 'px';
+    var pct = seg(t, 14.3, 14.8);
+    put(el['s4-contact'], eOut(pct), 0, 20 * (1 - eOut(pct)));
+
+    $('time').textContent = t.toFixed(1) + 's';
+    if (!seeking) $('seek').value = t;
+  }
+
+  function fit() { if (EXPORT) return; var s = Math.min(innerWidth / 1080, innerHeight / 1920); stage.style.transform = 'scale(' + s + ') translate(-50%, -50%)'; }
+  addEventListener('resize', fit); fit();
+
+  var t = 0, playing = false, last = 0, raf = 0, seeking = false;
+  function frame(now) {
+    if (!playing) return;
+    t += Math.min((now - last) / 1000, .1); last = now;
+    if (t >= DUR) { if (loop) t %= DUR; else { t = DUR; playing = false; btn(); } }
+    render(t);
+    if (playing) raf = requestAnimationFrame(frame);
+  }
+  function play() { if (playing) return; if (t >= DUR) t = 0; playing = true; last = performance.now(); raf = requestAnimationFrame(frame); btn(); }
+  function pause() { playing = false; cancelAnimationFrame(raf); btn(); }
+  function restart() { pause(); t = 0; render(0); play(); }
+  function btn() { $('btn-play').textContent = playing ? '❚❚ Pause' : '▶ Play'; }
+  $('btn-play').onclick = function () { playing ? pause() : play(); };
+  $('btn-restart').onclick = restart;
+  $('btn-loop').onclick = function () { loop = !loop; this.textContent = 'Loop: ' + (loop ? 'on' : 'off'); };
+  $('btn-clean').onclick = function () {
+    root.classList.add('clean');
+    var r = root.requestFullscreen && root.requestFullscreen(); if (r && r.catch) r.catch(function () {});
+    pause(); t = 0; render(0); setTimeout(play, 1200);
+  };
+  var seek = $('seek');
+  seek.addEventListener('input', function () { seeking = true; pause(); t = +seek.value; render(t); seeking = false; });
+  addEventListener('keydown', function (e) {
+    if (e.code === 'Space') { e.preventDefault(); playing ? pause() : play(); }
+    if (e.key === 'r' || e.key === 'R') restart();
+    if (e.key === 'f' || e.key === 'F') { var r = root.requestFullscreen && root.requestFullscreen(); if (r && r.catch) r.catch(function () {}); }
+    if (e.key === 'h' || e.key === 'H') root.classList.toggle('ui-hidden');
+    if (e.key === 'Escape') root.classList.remove('clean');
+  });
+  stage.addEventListener('click', function () { if (!EXPORT) restart(); });
+  var idle = 0;
+  function wake() { root.classList.remove('ui-hidden'); clearTimeout(idle); idle = setTimeout(function () { if (playing) root.classList.add('ui-hidden'); }, 2500); }
+  addEventListener('mousemove', wake); addEventListener('touchstart', wake, { passive: true });
+
+  window.renderAt = function (sec) { render(sec); };
+  render(0);
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () {
+    render(0); window.reelReady = true;
+    if (EXPORT) return;
+    setTimeout(play, RECORD ? 2000 : 500); wake();
+  });
+})();
+</script>
+</body>
+</html>
