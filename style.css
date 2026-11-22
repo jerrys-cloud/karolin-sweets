@@ -1821,3 +1821,8 @@ body { transition: opacity .18s ease; }
 @media (prefers-reduced-motion: reduce) {
   .wish-heart.is-pop, .wish-nav.is-bump, .wish-drawer[open] .wish-drawer__panel, .wish-drawer.is-closing .wish-drawer__panel, .wish-item { animation: none !important; }
 }
+
+/* קרדיט המעצב */
+.footer__credit { margin: 6px 0 0; font-size: .8rem; color: rgba(245, 237, 225, .45); letter-spacing: .02em; }
+.footer__credit a { color: var(--gold-300); opacity: .85; text-decoration: none; border-block-end: 1px dotted rgba(230, 207, 154, .5); transition: opacity .3s var(--ease); }
+.footer__credit a:hover { opacity: 1; }
