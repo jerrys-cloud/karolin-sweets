@@ -1,4 +1,4 @@
-"""Builds christmas-reel-15s.html and newyear-reel-15s.html from
+"""Builds christmas-reel-15s.html and newyear-reel-20s.html from
 holiday-template.html, inlining photos and the Santa artwork.
 Run:  python3 reel/build-holiday.py"""
 import base64, html, io, pathlib, re
@@ -25,7 +25,7 @@ CARD, DETAIL, PHONE = (440, 580), (840, 760), (480, 470)
 
 REELS = {
   "christmas-reel-15s.html": dict(
-    THEME="xmas", TITLE="Christmas Reel",
+    THEME="xmas", TITLE="Christmas Reel", TIMEMAP="[[0,0],[15,15]]", DUR=15, MARK_TOP=560, SANTA_NY="",
     C1_TOP=820, C3_TOP=1050, C4_TOP=610,
     S1_AR="كعكات عيد الميلاد المجيد الفاخرة", S1_HE="עוגות כריסמס יוקרתיות", S1_EN="Luxury Christmas Cakes",
     S2_AR="تصاميم ساحرة لكل احتفال 🎄", S2_HE="עיצובים קסומים לכל חגיגה", S2_EN="Magical Custom Designs",
@@ -38,12 +38,14 @@ REELS = {
     IMG_DETAIL=photo("christmas-cheesecake-berries.jpg", DETAIL),
     SANTA_1=santa("sa"), SANTA_2=santa("sb"), SANTA_3=santa("sc"),
   ),
-  "newyear-reel-15s.html": dict(
-    THEME="ny", TITLE="New Year Reel",
-    C1_TOP=910, C3_TOP=1050, C4_TOP=730,
-    S1_AR="استقبلوا العام الجديد بأفخم الحلويات ✨", S1_HE="פותחים שנה חדשה ומתוקה", S1_EN="Welcome the New Year in Luxury",
+  "newyear-reel-20s.html": dict(
+    THEME="ny", TITLE="New Year Reel", DUR=20, MARK_TOP=590, SANTA_NY=santa("sn"),
+    # 20s: each scene holds ~5s; entrance animations keep their normal speed
+    TIMEMAP="[[0,0],[3,3],[5,4],[5.8,4.8],[10,8],[13,11],[15,12],[15.8,12.8],[20,15]]",
+    C1_TOP=910, C3_TOP=1050, C4_TOP=830,
+    S1_AR="استقبلوا العام الجديد بأفخم الحلويات ✨", S1_HE="לכבוד השנה החדשה", S1_EN="Welcome the New Year in Luxury",
     S2_AR="كعكات مخصصة لليلة رأس السنة 🥂", S2_HE="עוגות מעוצבות לערב השנה החדשה", S2_EN="Custom New Year Cakes",
-    S3_AR="اختاروا كعكتكم المفضلة من الموقع 🎁", S3_HE="בחרו את העוגה שלכם באתר", S3_EN="Pick & Order From Our Website",
+    S3_AR="اختاروا كعكتكم المفضلة من الموقع 🎁", S3_HE="המבחר הקסום והמתוק באתר שלנו", S3_EN="Pick & Order From Our Website",
     S4_AR="زوروا موقعنا واطلبوا الآن! ✨", S4_HE="היכנסו לאתר והזמינו!", S4_EN="Visit & Order Today",
     TAG1="كيكة الشوكولاتة والرمان", TAG2="كيكة الفيونكة الحمراء", TAG3="كيكة الثلج الذهبية",
     PHONE_CARD="صواني حلويات السهرة",
