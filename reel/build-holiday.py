@@ -28,7 +28,7 @@ REELS = {
     THEME="xmas", TITLE="Christmas Reel", TIMEMAP="[[0,0],[15,15]]", DUR=15, MARK_TOP=560, SANTA_NY="",
     C1_TOP=820, C3_TOP=1050, C4_TOP=610,
     S1_AR="كعكات عيد الميلاد المجيد الفاخرة", S1_HE="עוגות כריסמס יוקרתיות", S1_EN="Luxury Christmas Cakes",
-    S2_AR="تصاميم ساحرة لكل احتفال 🎄", S2_HE="עיצובים קסומים לכל חגיגה", S2_EN="Magical Custom Designs",
+    S2_AR="أحلى وأزكى الحلويات للعيد 🎄", S2_HE="עיצובים קסומים וטעמים", S2_EN="Magical Custom Designs",
     S3_AR="احجزوا كعكتكم المفضلة الآن 🎅", S3_HE="הזמינו את העוגה שלכם עכשיו", S3_EN="Reserve Yours Now",
     S4_AR="موقعنا الجديد متاح الآن! اطلبوا بضغطة واحدة 📲", S4_HE="האתר החדש באוויר!", S4_EN="Our New Website is Live!",
     TAG1="كيكة شجرة الميلاد", TAG2="كيكة جذع الشتاء", TAG3="كيكة عائلة الثلج", PHONE_CARD="",
