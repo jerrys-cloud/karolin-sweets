@@ -1826,3 +1826,40 @@ body { transition: opacity .18s ease; }
 .footer__credit { margin: 6px 0 0; font-size: .8rem; color: rgba(245, 237, 225, .45); letter-spacing: .02em; }
 .footer__credit a { color: var(--gold-300); opacity: .85; text-decoration: none; border-block-end: 1px dotted rgba(230, 207, 154, .5); transition: opacity .3s var(--ease); }
 .footer__credit a:hover { opacity: 1; }
+
+/* =========================================================
+   إمكانية الوصول: رابط التخطي + صفحة إمكانية الوصول والخصوصية
+   ========================================================= */
+.skip-link {
+  position: fixed; inset-block-start: 10px; inset-inline-start: 10px; z-index: 300;
+  padding: 12px 20px; border-radius: 999px;
+  font: 700 1rem/1 var(--font-body); color: var(--cocoa-900); background: var(--gold-grad);
+  transform: translateY(-160%); transition: transform .25s var(--ease);
+}
+.skip-link:focus { transform: none; outline: 2px solid var(--cream-50); outline-offset: 3px; }
+.footer__legal { margin: 6px 0 0; font-size: .82rem; }
+.footer__legal a { color: rgba(245, 237, 225, .7); text-decoration: underline; text-underline-offset: 4px; }
+.footer__legal a:hover { color: var(--gold-300); }
+
+.legal-wrap { max-inline-size: 820px; }
+.legal { display: none; color: var(--ink); line-height: 1.9; font-size: 1.05rem; }
+html:not([lang="en"]):not([lang="he"]) .legal[lang="ar"],
+html[lang="he"] .legal[lang="he"],
+html[lang="en"] .legal[lang="en"] { display: block; }
+.legal[lang="he"] { font-family: "Heebo", var(--font-body); }
+.legal h2 {
+  margin: 0 0 14px; padding-block-start: 8px;
+  font-family: var(--font-serif); font-size: clamp(1.8rem, 3.4vw, 2.4rem); line-height: 1.35; color: var(--cocoa-900);
+}
+.legal h2 + p { margin-block-start: 0; }
+.legal h2:not(:first-child) { margin-block-start: 56px; padding-block-start: 40px; border-block-start: 1px solid rgba(193, 154, 85, .35); }
+.legal h3 { margin: 30px 0 10px; font-family: var(--font-serif); font-size: 1.35rem; color: var(--cocoa-800); }
+.legal ul { margin: 0; padding-inline-start: 1.3em; display: grid; gap: 8px; }
+.legal li::marker { color: var(--gold-500); }
+.legal a { color: var(--cocoa-800); font-weight: 700; text-decoration: underline; text-decoration-color: var(--gold-500); text-underline-offset: 4px; }
+.legal-card {
+  margin: 6px 0 16px; padding: 20px 24px; border-radius: var(--radius);
+  background: #fff; border: 1px solid rgba(193, 154, 85, .35); box-shadow: var(--shadow-sm);
+}
+.legal-card p { margin: 4px 0; }
+.legal-date { margin-block-start: 28px; font-size: .9rem; color: rgba(42, 29, 23, .65); }
