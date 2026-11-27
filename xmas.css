@@ -871,3 +871,122 @@
 @media (prefers-reduced-motion: reduce) {
   .xplaque__santa-in { animation: none !important; transform: translate3d(0, 4px, 0); }
 }
+
+/* =========================================================
+   زينة الميلاد على الصفحة كلها
+   شجرة، سانتا، رجل ثلج، هدايا، زلاجة طائرة، ثلج، هولي وعصي الحلوى
+   كلها زخرفية: لا تعترض النقرات ولا القراءة
+   ========================================================= */
+.x-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.x-deco { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.x-deco svg { display: block; overflow: visible; }
+.x-ground { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: clamp(46px, 6vw, 84px); }
+.x-tree svg { width: 100%; height: auto; }
+.xt-light { animation: x-light 1.8s ease-in-out infinite alternate; }
+.xt-light:nth-of-type(2n) { animation-delay: -.6s; }
+.xt-light:nth-of-type(3n) { animation-delay: -1.2s; }
+.xt-star { transform-origin: 100px 30px; animation: x-star 3s ease-in-out infinite; }
+@keyframes x-light { from { opacity: .35; } to { opacity: 1; } }
+@keyframes x-star { 0%, 100% { transform: rotate(-5deg) scale(1); } 50% { transform: rotate(5deg) scale(1.08); } }
+
+/* hero */
+.xhero__inner { z-index: 3; }
+.xh-tree { position: absolute; left: clamp(8px, 3vw, 48px); bottom: clamp(26px, 3.2vw, 52px); width: clamp(110px, 15vw, 230px); filter: drop-shadow(0 14px 22px rgba(0, 0, 0, .45)); }
+.xh-gang { position: absolute; right: clamp(4px, 2.5vw, 40px); bottom: clamp(24px, 3vw, 50px); width: clamp(190px, 27vw, 410px); aspect-ratio: 410 / 260; }
+.xh-snowman { position: absolute; right: 0; bottom: 0; width: 40%; animation: x-bob 3.2s ease-in-out infinite; }
+.xh-santa { position: absolute; left: 0; bottom: 2%; width: 42%; animation: x-bob 2.8s ease-in-out -1s infinite; }
+.xh-snowman svg, .xh-santa svg, .xc-santa svg, .xa-snowman svg { width: 100%; height: auto; }
+.x-gift { position: absolute; filter: drop-shadow(0 10px 16px rgba(0, 0, 0, .4)); }
+.xh-g1 { left: 36%; bottom: 0; width: 22%; }
+.xh-g2 { left: 52%; bottom: 0; width: 16%; }
+.xh-g3 { left: 44%; bottom: 20%; width: 14%; transform: rotate(-8deg); }
+.x-deco .santa__arm, .x-deco .snow__arm { animation: santa-wave .8s ease-in-out infinite alternate; }
+.x-deco .santa__arm { transform-origin: 126px 146px; }
+.x-deco .snow__arm { transform-origin: 142px 122px; }
+.x-deco .santa__hat { transform-origin: 80px 60px; animation: santa-hat 2.4s ease-in-out infinite; }
+@keyframes x-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+/* Santa's sleigh crossing the sky, right to left */
+.x-sleigh {
+  position: absolute; top: 16%; left: 0;
+  width: clamp(200px, 26vw, 400px); height: auto;
+  filter: drop-shadow(0 0 14px rgba(240, 220, 174, .55));
+  transform: translate3d(110vw, 0, 0);
+  animation: x-sleigh 22s linear 2s infinite;
+  opacity: .9;
+}
+@keyframes x-sleigh {
+  0%   { transform: translate3d(110vw, 30px, 0) rotate(4deg); }
+  12%  { transform: translate3d(60vw, -10px, 0) rotate(-2deg); }
+  24%  { transform: translate3d(10vw, 20px, 0) rotate(3deg); }
+  34%  { transform: translate3d(-40vw, -20px, 0) rotate(-3deg); }
+  100% { transform: translate3d(-40vw, -20px, 0); }
+}
+
+/* holly on the title plaque */
+.x-holly { position: absolute; width: 96px; height: auto; z-index: 4; pointer-events: none; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .45)); }
+.xp-holly1 { inset-inline-start: -34px; top: -30px; transform: rotate(-24deg); }
+.xp-holly2 { inset-inline-end: -30px; bottom: -28px; transform: rotate(160deg); }
+
+/* snow caps on every cake card */
+.xcard__media::before {
+  content: ""; position: absolute; left: -2px; right: -2px; top: -1px; height: 34px; z-index: 2; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 48' preserveAspectRatio='none'%3E%3Cpath d='M0 0H600V14 C594 14 593 26 586 26 S578 14 572 14 C566 14 564 42 557 42 S548 14 542 14 C538 14 537 24 532 24 S527 14 523 14 C516 14 514 25 506 25 S495 14 488 14 C482 14 481 40 474 40 S465 14 459 14 C455 14 454 38 450 38 S444 14 440 14 C435 14 434 23 428 23 S421 14 416 14 C412 14 411 35 406 35 S400 14 396 14 C390 14 388 24 380 24 S371 14 365 14 C360 14 359 24 352 24 S345 14 340 14 C333 14 331 35 322 35 S312 14 305 14 C301 14 300 40 296 40 S290 14 286 14 C282 14 281 29 276 29 S269 14 265 14 C257 14 256 42 246 42 S235 14 227 14 C220 14 218 23 209 23 S198 14 191 14 C184 14 182 40 173 40 S162 14 155 14 C149 14 148 23 140 23 S131 14 125 14 C120 14 119 23 112 23 S105 14 100 14 C93 14 91 26 82 26 S72 14 65 14 C60 14 58 35 52 35 S43 14 38 14 C34 14 32 39 27 39 S20 14 16 14 C12 14 11 40 6 40 S4 14 0 14Z' fill='%23f7fafc'/%3E%3C/svg%3E") top / 100% 100% no-repeat;
+  filter: drop-shadow(0 3px 3px rgba(0, 0, 0, .25));
+}
+
+/* kids activities: candy canes, holly and a waving snowman */
+.xact .container { position: relative; z-index: 2; }
+.x-cane { position: absolute; width: clamp(40px, 5vw, 70px); height: auto; filter: drop-shadow(0 8px 12px rgba(0, 0, 0, .4)); }
+.xa-cane1 { top: 26px; left: clamp(10px, 4vw, 70px); transform: rotate(-18deg); }
+.xa-cane2 { top: 26px; right: clamp(10px, 4vw, 70px); transform: scaleX(-1) rotate(-18deg); }
+.xa-holly1 { top: 140px; left: clamp(40px, 7vw, 130px); width: 80px; }
+.xa-holly2 { top: 140px; right: clamp(40px, 7vw, 130px); width: 80px; transform: scaleX(-1); }
+.xa-snowman { position: absolute; left: clamp(6px, 2vw, 40px); bottom: -10px; width: clamp(90px, 11vw, 170px); animation: x-bob 3s ease-in-out infinite; }
+
+/* season band: a pine garland with baubles along the top */
+.xseason { overflow: hidden; padding-block-start: clamp(96px, 10vw, 130px); }
+.xseason::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 60px; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 60'%3E%3Cpath d='M0 14 Q40 34 80 14 T160 14' fill='none' stroke='%23173527' stroke-width='14' stroke-linecap='round'/%3E%3Cpath d='M0 14 Q40 34 80 14 T160 14' fill='none' stroke='%232f7a55' stroke-width='6' stroke-dasharray='3 5' stroke-linecap='round'/%3E%3Cpath d='M40 24 v10' stroke='%23d4b373' stroke-width='2'/%3E%3Ccircle cx='40' cy='42' r='9' fill='%23c53a50'/%3E%3Ccircle cx='37' cy='39' r='2.5' fill='%23fff' opacity='.6'/%3E%3Cpath d='M120 24 v8' stroke='%23d4b373' stroke-width='2'/%3E%3Ccircle cx='120' cy='39' r='8' fill='%23d4b373'/%3E%3Ccircle cx='117' cy='36' r='2.2' fill='%23fff' opacity='.7'/%3E%3Ccircle cx='80' cy='16' r='4' fill='%23ffd27a'/%3E%3Ccircle cx='0' cy='16' r='4' fill='%23ffd27a'/%3E%3Ccircle cx='160' cy='16' r='4' fill='%23ffd27a'/%3E%3C/svg%3E") top / 160px 60px repeat-x;
+}
+
+/* final call to action */
+.xcta .container { position: relative; z-index: 3; }
+.xcta { padding-block-end: clamp(140px, 14vw, 200px); }
+.xc-tree { position: absolute; left: clamp(6px, 4vw, 80px); bottom: clamp(26px, 3vw, 50px); width: clamp(100px, 13vw, 200px); filter: drop-shadow(0 14px 22px rgba(0, 0, 0, .45)); }
+.xc-santa { position: absolute; right: clamp(10px, 5vw, 100px); bottom: clamp(30px, 3.4vw, 56px); width: clamp(110px, 13vw, 200px); animation: x-bob 2.8s ease-in-out infinite; }
+.xc-g1 { left: calc(clamp(6px, 4vw, 80px) + clamp(90px, 12vw, 190px)); bottom: clamp(30px, 3vw, 50px); width: clamp(50px, 6vw, 90px); }
+.xc-g2 { right: calc(clamp(10px, 5vw, 100px) + clamp(100px, 12vw, 190px)); bottom: clamp(30px, 3vw, 50px); width: clamp(56px, 7vw, 100px); }
+.xc-g3 { right: calc(clamp(10px, 5vw, 100px) + clamp(140px, 17vw, 270px)); bottom: clamp(30px, 3vw, 50px); width: clamp(40px, 5vw, 70px); transform: rotate(8deg); }
+
+/* snow on the footer's top edge */
+.xmas-page .site-footer { position: relative; }
+.xmas-page .site-footer::before {
+  content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 26px; pointer-events: none;
+  background:
+    radial-gradient(circle at 22px -6px, #f7fafc 22px, transparent 23px) 0 0 / 44px 26px repeat-x,
+    linear-gradient(#f7fafc, #f7fafc) 0 0 / 100% 6px no-repeat;
+  filter: drop-shadow(0 3px 3px rgba(0, 0, 0, .3));
+}
+
+@media (max-width: 900px) {
+  .xh-gang { width: clamp(160px, 42vw, 300px); }
+  .xa-holly1, .xa-holly2 { display: none; }
+  .xc-g3 { display: none; }
+}
+@media (max-width: 560px) {
+  .xhero { padding-block-end: 120px; }
+  .xh-tree { width: 92px; bottom: 30px; }
+  .xh-gang { width: 168px; bottom: 26px; }
+  .x-sleigh { top: 12%; }
+  .xa-cane1, .xa-cane2 { width: 34px; top: 14px; }
+  .xa-snowman { width: 74px; }
+  .xp-holly1, .xp-holly2 { width: 64px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .x-sleigh { display: none; }
+  .xt-light, .xt-star, .xh-snowman, .xh-santa, .xc-santa, .xa-snowman,
+  .x-deco .santa__arm, .x-deco .snow__arm, .x-deco .santa__hat { animation: none !important; }
+}
+.xact { padding-block-end: clamp(140px, 13vw, 190px); }
